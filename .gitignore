@@ -1,0 +1,9 @@
+node_modules
+out
+.env
+.waypoint
+audit-log.sh
+loop.sh
+notes.md
+install.txt
+output.txt
