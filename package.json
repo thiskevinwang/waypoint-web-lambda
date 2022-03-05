@@ -1,0 +1,35 @@
+{
+  "name": "waypoint-eks-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "start": "node ./out/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiskevinwang/waypoint-eks-express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thiskevinwang/waypoint-eks-express/issues"
+  },
+  "homepage": "https://github.com/thiskevinwang/waypoint-eks-express#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^17.0.21",
+    "@types/pg": "^8.6.4",
+    "prettier": "^2.5.1",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.3"
+  }
+}
