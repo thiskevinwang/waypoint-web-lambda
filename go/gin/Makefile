@@ -12,3 +12,7 @@ docker:
 	@echo "Test the image with:"
 
 	@echo "\tdocker run -p ${8080}:${8080} ${IMAGE}:${TAG}${NC}"
+
+waypoint:
+	@echo "..."
+	@waypoint init
