@@ -17,6 +17,7 @@ app "wp-eks-express" {
     }
   }
 
+  # builtin/k8s/platform.go
   deploy {
     use "kubernetes" {
       probe_path = "/"
@@ -29,12 +30,6 @@ app "wp-eks-express" {
       port          = 3000
     }
   }
-}
-
-variable "version" {
-  default     = "latest"
-  type        = string
-  description = "Version"
 }
 
 variable "tag" {
