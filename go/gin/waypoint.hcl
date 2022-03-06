@@ -1,9 +1,9 @@
-project = "wp-eks-nodejs-express"
+project = "wp-eks-go-gin"
 
 # Labels can be specified for organizational purposes.
 # labels = { "foo" = "bar" }
 
-app "wp-eks-nodejs-express" {
+app "wp-eks-go-gin" {
   build {
     use "docker" {}
 
@@ -11,7 +11,7 @@ app "wp-eks-nodejs-express" {
     registry {
       use "aws-ecr" {
         region     = var.region
-        repository = "wp-eks-nodejs-express"
+        repository = "wp-eks-go-gin"
         tag        = var.tag
       }
     }
