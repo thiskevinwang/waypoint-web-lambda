@@ -12,8 +12,8 @@ COPY --from=COMPILER /usr/app/package*.json ./
 COPY --from=COMPILER /usr/app/out ./
 RUN npm install --only=production
 
+# https://github.com/GoogleContainerTools/distroless/blob/main/examples/nodejs/Dockerfile
 FROM gcr.io/distroless/nodejs:16
 WORKDIR /usr/app
 COPY --from=BUILDER /usr/app ./
-USER 1000
 CMD ["index.js"]
