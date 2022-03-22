@@ -17,5 +17,10 @@ func main() {
 			"message": "pong",
 		})
 	})
+	r.GET("/_healthz", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "OK",
+		})
+	})
 	http.ListenAndServe(":8080", r)
 }

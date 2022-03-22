@@ -5,14 +5,28 @@ project = "wp-eks-go-gin"
 
 app "wp-eks-go-gin" {
   build {
-    use "docker" {}
+    use "docker" {
+
+    }
 
 
+    // registry {
+    //   use "aws-ecr" {
+    //     region     = var.region
+    //     repository = "wp-eks-go-gin"
+    //     tag        = var.tag
+    //   }
+    // }
     registry {
-      use "aws-ecr" {
-        region     = var.region
-        repository = "wp-eks-go-gin"
-        tag        = var.tag
+      use "docker" {
+        // auth {
+        //   username = ""
+        //   password = ""
+        //   email = ""
+        // }
+        encoded_auth = filebase64("${path.app}/dockerAuth.json")
+        image = "registry.hub.docker.com/thekevinwang/wp-eks-go-gin"
+        tag   = "latest"
       }
     }
   }
@@ -20,14 +34,15 @@ app "wp-eks-go-gin" {
   # builtin/k8s/platform.go
   deploy {
     use "kubernetes" {
-      probe_path = "/"
+      probe_path   = "/_healthz"
+      service_port = 8080
     }
   }
 
   release {
     use "kubernetes" {
       load_balancer = true
-      port          = 3000
+      port          = 8080
     }
   }
 }
