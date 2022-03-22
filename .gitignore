@@ -12,3 +12,7 @@ cdk.out
 cdk.context.json
 cdk-outputs.json
 *.txt
+
+dockerAuth.json
+data.db
+*.db.lock
