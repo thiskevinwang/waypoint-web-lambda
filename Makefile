@@ -20,7 +20,7 @@ infra-diff:
 	@$(MAKE) -C cdk diff
 infra-deploy:
 	@echo "Deploying infrastructure"
-	@$(MAKE) -C cdk deploy
+	@$(MAKE) -C cdk deploy --outputs-file ./cdk-outputs.json
 infra-destroy:
 	@echo "Destroying infrastructure"
 	@$(MAKE) -C cdk destroy
