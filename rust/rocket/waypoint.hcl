@@ -1,9 +1,9 @@
-project = "rust-actix"
+project = "rust-rocket"
 
 # Labels can be specified for organizational purposes.
 # labels = { "foo" = "bar" }
 
-app "rust-actix" {
+app "rust-rocket" {
   build {
     use "docker" {
       buildkit   = true
@@ -16,7 +16,7 @@ app "rust-actix" {
     registry {
       use "aws-ecr" {
         region     = var.region
-        repository = "rust-actix"
+        repository = "rust-rocket"
         tag        = var.tag
       }
     }

@@ -28,7 +28,7 @@ func main() {
 	r.Use(ginredoc.New(doc))
 
 	r.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "Hello World!")
+		c.String(http.StatusOK, "Hello from Gin 🟦🐹🥃!")
 	})
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
