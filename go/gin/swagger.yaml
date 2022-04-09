@@ -1,0 +1,210 @@
+openapi: 3.0.1
+info:
+  title: Pokemon REST API for PPKWU5
+  description: Try to test some GET enpoints
+  version: 3.0.0
+servers:
+  - url: 'https://pokeapi.co'
+paths:
+  '/api/v2/machine/{id}':
+    get:
+      description: Enter id to find Pokemon Machine
+      summary: Finds Machine by Id
+      parameters:
+        - name: id
+          in: path
+          description: ID of region to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Error
+          content:
+            text/plain; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://pokeapi.co'
+    servers:
+      - url: 'https://pokeapi.co'
+  '/api/v2/pokemon/{id}':
+    get:
+      description: Enter id to find Pokemon
+      summary: Finds pokemon by Id
+      parameters:
+        - name: id
+          in: path
+          description: ID of region to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Error
+          content:
+            text/plain; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://pokeapi.co'
+    servers:
+      - url: 'https://pokeapi.co'
+  '/api/v2/pokemon/{name}/':
+    get:
+      description: Enter name to find Pokemon Info
+      summary: Finds Pokemon by Name
+      parameters:
+        - name: name
+          in: path
+          description: The name that needs to pokemon info.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Error
+          content:
+            text/plain; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://pokeapi.co'
+    servers:
+      - url: 'https://pokeapi.co'
+  '/api/v2/ability/{id}/':
+    get:
+      description: Enter id to find Pokemon ability
+      summary: Finds Pokemon ability by Id
+      parameters:
+        - name: id
+          in: path
+          description: ID of region to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Error
+          content:
+            text/plain; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://pokeapi.co'
+    servers:
+      - url: 'https://pokeapi.co'
+  '/api/v2/region/{id}':
+    get:
+      description: Enter id to find Pokemon region
+      summary: Finds Pokemon region by id
+      parameters:
+        - name: id
+          in: path
+          description: ID of region to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Error
+          content:
+            text/plain; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+        - url: 'https://pokeapi.co'
+    servers:
+      - url: 'https://pokeapi.co'
+components:
+  schemas:
+    Pokemon:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: integer
+          format: int64
+        base_experience:
+          type: integer
+          format: int32
+        height:
+          type: string
+        is_default:
+          type: string
+        order:
+          type: string
+        abilities:
+          type: string
+        moves:
+          type: string
+        stats:
+          type: string
+        types:
+          type: string
+        
+      xml:
+        name: Pokemon
+    Machine:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        item:
+          type: integer
+          format: int64
+        move:
+          type: integer
+          format: int32
+        version_group:
+          type: string
+        
+      xml:
+        name: Machine
+    Region:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        locations:
+          type: integer
+          format: int64
+        move:
+          type: integer
+          format: int32
+        name:
+          type: string
+        names:
+          type: string
+        main_generation:
+          type: string
+        pokedexes:
+          type: string
+        version_group:
+          type: string
+        
+      xml:
+        name: Region

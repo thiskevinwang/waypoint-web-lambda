@@ -1,48 +1,37 @@
-project = "wp-eks-go-gin"
+project = "go-gin"
 
 # Labels can be specified for organizational purposes.
 # labels = { "foo" = "bar" }
 
-app "wp-eks-go-gin" {
+app "go-gin" {
   build {
     use "docker" {
-
+      buildkit   = true
+      // platform   = "amd64"
+      platform = "arm64"
+      dockerfile = "${path.app}/Dockerfile"
     }
 
-
-    // registry {
-    //   use "aws-ecr" {
-    //     region     = var.region
-    //     repository = "wp-eks-go-gin"
-    //     tag        = var.tag
-    //   }
-    // }
+    # Use this for production deployment
     registry {
-      use "docker" {
-        // auth {
-        //   username = ""
-        //   password = ""
-        //   email = ""
-        // }
-        encoded_auth = filebase64("${path.app}/dockerAuth.json")
-        image = "registry.hub.docker.com/thekevinwang/wp-eks-go-gin"
-        tag   = "latest"
+      use "aws-ecr" {
+        region     = var.region
+        repository = "go-gin"
+        tag        = var.tag
       }
     }
   }
 
-  # builtin/k8s/platform.go
   deploy {
-    use "kubernetes" {
-      probe_path   = "/_healthz"
-      service_port = 8080
+    use "aws-lambda" {
+      region = var.region
+      memory = 512
     }
   }
 
   release {
-    use "kubernetes" {
-      load_balancer = true
-      port          = 8080
+    use "aws-lambda" {
+
     }
   }
 }

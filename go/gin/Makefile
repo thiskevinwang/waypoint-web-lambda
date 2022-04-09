@@ -1,17 +1,20 @@
-IMAGE=eks-go-gin
-TAG=latest
+IMAGE_TAG=go-gin:latest
+
 PORT=8080
+PLATFORM=linux/arm64
 
 docker:
-	@echo "Building Docker image"
 
-	@docker buildx build --platform=linux/arm64 -t ${IMAGE}:${TAG} .
+	@docker buildx build --platform=${PLATFORM} -t ${IMAGE_TAG} .
 	@echo ""
 
-	@echo "Image architecture: $$(docker inspect ${IMAGE}:${TAG} | jq -r '.[].Architecture')"
+	@echo "------------------------------------------"
+	@echo "Image architecture: $$(docker inspect ${IMAGE_TAG} | jq -r '.[].Architecture')"
+	@echo "------------------------------------------"
+
 	@echo "Test the image with:"
 
-	@echo "\tdocker run -p ${8080}:${8080} ${IMAGE}:${TAG}${NC}"
+	@echo "docker run --rm --tty -p ${PORT}:${PORT} ${IMAGE_TAG}"
 
 waypoint:
 	@echo "..."
