@@ -16,3 +16,6 @@ cdk-outputs.json
 dockerAuth.json
 data.db
 *.db.lock
+
+# ignore rust project build outputs
+target
