@@ -6,8 +6,10 @@
 ├── cdk
 ├── go
 │   └── gin
-└── nodejs
-    └── express
+├── nodejs
+│   └── express
+└── rust
+    └── actix
 ```
 
 ### `cdk`
@@ -36,7 +38,7 @@ aws eks update-kubeconfig --name <some_name> --region us-east-1 --role-arn arn:a
 Deploy either of the webserver apps with:
 
 ```
-# from ./go/gin or ./nodejs/express
+# from ./go/gin or ./nodejs/express or ./rust/actix
 
 waypoint install -platform=kubernetes -accept-tos
 waypoint init
