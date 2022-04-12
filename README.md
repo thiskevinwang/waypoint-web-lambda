@@ -1,4 +1,6 @@
-# waypoint-webserver-samples
+# waypoint-web-lambda
+
+This is a working collection of basic web-server-in-aws-lambda setups, in various languages using various popular web frameworks.
 
 This requires [waypoint](https://www.waypointproject.io/downloads)
 
