@@ -1,9 +1,9 @@
-project = "go-gin"
+project = "go"
 
 # Labels can be specified for organizational purposes.
 # labels = { "foo" = "bar" }
 
-app "go-gin" {
+app "gin" {
   build {
     use "docker" {
       buildkit   = true

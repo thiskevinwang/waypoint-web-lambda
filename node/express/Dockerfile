@@ -16,4 +16,6 @@ RUN npm install --only=production
 FROM gcr.io/distroless/nodejs:16
 WORKDIR /usr/app
 COPY --from=BUILDER /usr/app ./
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.3.2 /lambda-adapter /opt/extensions/lambda-adapter
+EXPOSE 3000
 CMD ["index.js"]

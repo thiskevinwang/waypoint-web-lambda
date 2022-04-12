@@ -1,9 +1,9 @@
-project = "wp-eks-nodejs-express"
+project = "node"
 
 # Labels can be specified for organizational purposes.
 # labels = { "foo" = "bar" }
 
-app "wp-eks-nodejs-express" {
+app "express" {
   build {
     use "docker" {}
 
@@ -11,23 +11,22 @@ app "wp-eks-nodejs-express" {
     registry {
       use "aws-ecr" {
         region     = var.region
-        repository = "wp-eks-nodejs-express"
+        repository = "nodejs-express"
         tag        = var.tag
       }
     }
   }
 
-  # builtin/k8s/platform.go
   deploy {
-    use "kubernetes" {
-      probe_path = "/"
+    use "aws-lambda" {
+      region = var.region
+      memory = 512
     }
   }
 
   release {
-    use "kubernetes" {
-      load_balancer = true
-      port          = 3000
+    use "aws-lambda" {
+
     }
   }
 }

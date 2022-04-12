@@ -1,9 +1,9 @@
-project = "rust-rocket"
+project = "rust"
 
 # Labels can be specified for organizational purposes.
 # labels = { "foo" = "bar" }
 
-app "rust-rocket" {
+app "rocket" {
   build {
     use "docker" {
       buildkit   = true
