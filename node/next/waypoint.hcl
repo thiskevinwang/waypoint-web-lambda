@@ -3,7 +3,7 @@ project = "node"
 # Labels can be specified for organizational purposes.
 # labels = { "foo" = "bar" }
 
-app "express" {
+app "next" {
   build {
     use "docker" {
       buildkit   = true
@@ -12,11 +12,11 @@ app "express" {
       dockerfile = "${path.app}/Dockerfile"
     }
 
-
+    # Use this for production deployment
     registry {
       use "aws-ecr" {
         region     = var.region
-        repository = "nodejs-express"
+        repository = "node-next"
         tag        = var.tag
       }
     }
