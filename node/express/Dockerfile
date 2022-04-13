@@ -1,23 +1,23 @@
 # docker build -t node-express:latest .
-# docker run --rm --tty -p 5000:5000 node-express:latest
+# docker run --rm --tty -p 8080:8080 node-express:latest
 FROM node:16-alpine as COMPILER
 WORKDIR /usr/app
 # COPY package*.json ./
 # Don't copy package-lock.json because of platform errors
 COPY package.json ./
 COPY tsconfig*.json ./
-RUN npm install -g npm@latest
+COPY app.ts ./
+COPY index.ts ./
 RUN npm i
-COPY . ./
 RUN npm run build
 
 FROM node:16-alpine
-WORKDIR /var/task
-COPY --from=COMPILER /usr/app/out /var/task/out
-COPY --from=COMPILER /usr/app/package*.json /var/task/
-COPY --from=COMPILER /usr/app/node_modules /var/task/node_modules
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.3.2 /lambda-adapter /opt/extensions/lambda-adapter
-EXPOSE 5000
+EXPOSE 8080
+
+COPY --from=COMPILER /usr/app/out ./out
+COPY --from=COMPILER /usr/app/package*.json ./
+COPY --from=COMPILER /usr/app/node_modules ./node_modules
 CMD ["npm", "start"]
 
 # # https://github.com/GoogleContainerTools/distroless/blob/main/examples/nodejs/Dockerfile

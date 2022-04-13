@@ -20,8 +20,8 @@ COPY --from=COMPILER /usr/app/.next /var/task/.next
 COPY --from=COMPILER /usr/app/package*.json /var/task/
 COPY --from=COMPILER /usr/app/node_modules /var/task/node_modules
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.3.2 /lambda-adapter /opt/extensions/lambda-adapter
-EXPOSE 5000
-CMD ["npm", "start", "--", "--port", "5000"]
+EXPOSE 8080
+CMD ["npm", "start", "--", "--port", "8080"]
 
 # # https://github.com/GoogleContainerTools/distroless/blob/main/examples/nodejs/Dockerfile
 # # FROM gcr.io/distroless/nodejs:16
