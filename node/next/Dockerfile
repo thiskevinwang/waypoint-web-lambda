@@ -15,10 +15,11 @@ COPY styles styles
 RUN npm run build
 
 FROM node:16-alpine
-WORKDIR /var/task
-COPY --from=COMPILER /usr/app/.next /var/task/.next
-COPY --from=COMPILER /usr/app/package*.json /var/task/
-COPY --from=COMPILER /usr/app/node_modules /var/task/node_modules
+COPY --from=COMPILER /usr/app/.next .next
+# `public` dir should live at the same level as `.next`
+COPY public /public
+COPY --from=COMPILER /usr/app/package*.json /
+COPY --from=COMPILER /usr/app/node_modules /node_modules
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.3.2 /lambda-adapter /opt/extensions/lambda-adapter
 EXPOSE 8080
 CMD ["npm", "start", "--", "--port", "8080"]
