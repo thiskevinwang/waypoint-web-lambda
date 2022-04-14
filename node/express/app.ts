@@ -7,14 +7,14 @@ export const createApp = () => {
 
   app.use(morgan('short'))
 
-  app.get('/', ((req, res) => {
+  app.get('/', (req, res) => {
     res.status(200).send('Hello from Node.js & Express!')
-  }) as RequestHandler)
+  })
 
   // default 404 handler
-  app.use(((req, res, next) => {
+  app.use((req, res, next) => {
     res.status(404).send('Not found')
-  }) as RequestHandler)
+  })
 
   // default 500
   app.use(((err, req, res, next) => {
