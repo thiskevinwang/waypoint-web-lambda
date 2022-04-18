@@ -35,7 +35,10 @@ fn count(hit_count: &State<HitCount>) -> String {
 #[launch]
 fn rocket() -> _ {
     let mut config = Config::release_default();
-    config.port = 8080;
+    config.port = std::env::var("PORT")
+        .unwrap_or_else(|_| "8080".to_string())
+        .parse::<u16>()
+        .unwrap();
 
     let localhost_v4 = IpAddr::V4(Ipv4Addr::new(0, 0, 0, 0));
     config.address = localhost_v4;

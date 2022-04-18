@@ -16,14 +16,18 @@ async fn manual_hello() -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    println!("Starting server at http://localhost:8080");
+    let port = std::env::var("PORT")
+        .unwrap_or_else(|_| "8080".to_string())
+        .parse::<u16>()
+        .unwrap();
+    println!("Starting server at http://localhost:{}", port);
     HttpServer::new(|| {
         App::new()
             .service(hello)
             .service(echo)
             .route("/hey", web::get().to(manual_hello))
     })
-    .bind(("localhost", 8080))?
+    .bind(("localhost", port))?
     .run()
     .await
 }

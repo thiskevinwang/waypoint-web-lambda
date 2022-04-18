@@ -12,8 +12,11 @@ RUN npm i
 RUN npm run build
 
 FROM node:16-alpine
+# READINESS_CHECK_PORT and PORT are used by https://github.com/aws-samples/aws-lambda-adapter/blob/main/src/main.rs
+ENV READINESS_CHECK_PORT=3005
+ENV PORT=3005
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.3.2 /lambda-adapter /opt/extensions/lambda-adapter
-EXPOSE 8080
+EXPOSE 3005
 
 COPY --from=COMPILER /usr/app/out ./out
 COPY --from=COMPILER /usr/app/package*.json ./

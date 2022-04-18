@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/mvrilo/go-redoc"
@@ -43,6 +44,11 @@ func main() {
 
 	// log.Info("Will listen on http://localhost:8080")
 	// http.ListenAndServe(":8080", r)
-	println("Documentation served at http://127.0.0.1:8080/docs")
-	panic(r.Run(":8080"))
+	// println("Documentation served at http://127.0.0.1:8080/docs")
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	panic(r.Run(":" + port))
 }
