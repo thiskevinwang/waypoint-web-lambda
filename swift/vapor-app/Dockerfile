@@ -62,13 +62,15 @@ COPY --from=build --chown=vapor:vapor /staging /app
 USER vapor:vapor
 
 # lambda adapter
+
 # READINESS_CHECK_PORT and PORT are used by https://github.com/aws-samples/aws-lambda-adapter/blob/main/src/main.rs
-ENV READINESS_CHECK_PORT=7531
-ENV PORT=7531
+# TODO: figure out port with vapor
+# ENV READINESS_CHECK_PORT="7531"
+# ENV PORT="7531"
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.3.2 /lambda-adapter /opt/extensions/lambda-adapter
 # Let Docker bind to port 8080
 EXPOSE $PORT
 
 # Start the Vapor service when the image is run, default to listening on 8080 in production environment
 ENTRYPOINT ["./Run"]
-CMD ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "$PORT"]
+CMD ["serve", "--env", "production", "--hostname", "0.0.0.0", "--port", "8080"]
