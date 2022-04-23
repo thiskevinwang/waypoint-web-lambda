@@ -3,7 +3,6 @@ FROM python:3.10-alpine
 ENV READINESS_CHECK_PORT=7531
 ENV PORT=7531
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.3.2 /lambda-adapter /opt/extensions/lambda-adapter
-EXPOSE 7531
 
 # We copy just the requirements.txt first to leverage Docker cache
 COPY ./requirements.txt /app/requirements.txt

@@ -16,7 +16,6 @@ FROM node:16-alpine
 ENV READINESS_CHECK_PORT=3005
 ENV PORT=3005
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.3.2 /lambda-adapter /opt/extensions/lambda-adapter
-EXPOSE 3005
 
 COPY --from=COMPILER /usr/app/out ./out
 COPY --from=COMPILER /usr/app/package*.json ./
