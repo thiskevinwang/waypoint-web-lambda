@@ -1,8 +1,5 @@
 project = "go"
 
-# Labels can be specified for organizational purposes.
-# labels = { "foo" = "bar" }
-
 app "gin" {
   build {
     use "docker" {
@@ -12,7 +9,6 @@ app "gin" {
       dockerfile = "${path.app}/Dockerfile"
     }
 
-    # Use this for production deployment
     registry {
       use "aws-ecr" {
         region     = var.region
