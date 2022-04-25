@@ -4,13 +4,15 @@ ENV READINESS_CHECK_PORT=7531
 ENV PORT=7531
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.3.2 /lambda-adapter /opt/extensions/lambda-adapter
 
-# We copy just the requirements.txt first to leverage Docker cache
+# copy source files to image
 COPY ./requirements.txt /app/requirements.txt
+COPY ./app.py /app/app.py
 
+# TODO: use multi-stage build to cache requirements
+
+# install requirements
 WORKDIR /app
-
 RUN pip3 install -r requirements.txt
 
-COPY . /app
-
+# run the app
 CMD [ "python3", "app.py" ]
