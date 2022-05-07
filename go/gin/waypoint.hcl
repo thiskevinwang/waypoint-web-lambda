@@ -26,7 +26,7 @@ app "gin" {
   }
 
   release {
-    use "aws-lambda" {
+    use "lambda-function-url" {
 
     }
   }

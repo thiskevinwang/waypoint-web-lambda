@@ -25,7 +25,7 @@ app "rocket" {
   }
 
   release {
-    use "aws-lambda" {
+    use "lambda-function-url" {
 
     }
   }

@@ -25,7 +25,7 @@ app "actix" {
   }
 
   release {
-    use "aws-lambda" {
+    use "lambda-function-url" {
 
     }
   }

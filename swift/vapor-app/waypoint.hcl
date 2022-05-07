@@ -25,7 +25,7 @@ app "vapor" {
   }
 
   release {
-    use "aws-lambda" {
+    use "lambda-function-url" {
 
     }
   }

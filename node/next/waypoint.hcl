@@ -25,7 +25,7 @@ app "next" {
   }
 
   release {
-    use "aws-lambda" {
+    use "lambda-function-url" {
 
     }
   }
