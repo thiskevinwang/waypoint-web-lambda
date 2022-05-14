@@ -1,0 +1,15 @@
+#Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+#SPDX-License-Identifier: MIT-0
+parameters:
+  - region: us-east-1
+    names:
+      - CacheExtensions_Parameter1
+      - /aws/reference/secretsmanager/secret_info
+dynamodb:
+  - table: lambda-cache-table
+    hashkey: pk
+    hashkeytype: S
+    hashkeyvalue: pKey1
+    sortkey: sk
+    sortkeytype: S
+    sortkeyvalue: sKey1
