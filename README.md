@@ -19,7 +19,6 @@ docker build -t go-gin:latest .
 docker run --rm --tty -p 7531:7531 go-gin:latest
 ```
 
-
 Deploy either of the webserver apps with `waypoint`:
 
 ```bash
@@ -32,3 +31,17 @@ waypoint install -platform=docker -accept-tos
 waypoint init
 waypoint up
 ```
+
+## Deployed Examples
+
+(Subject to change...)
+
+| Language  | Framework  | Lambda URL                                                           |
+| :-------- | :--------- | :------------------------------------------------------------------- |
+| 🟩 Node   | Next.js    | https://6f75ux4u5be7x2n6qip7ftn5t40mkhzh.lambda-url.us-east-1.on.aws |
+| 🟩 Node   | Express.js | https://h6hgqeiofnuk4rsk44a2kigo4i0ewjfn.lambda-url.us-east-1.on.aws |
+| 🐹 Go     | Gin        | https://qvomz3om452pulf5joiuyojwc40ekond.lambda-url.us-east-1.on.aws |
+| 🐍 Python | Flask      | https://vfxxckern6sxk4gd7mjunj4zoi0lcwwd.lambda-url.us-east-1.on.aws |
+| 🦀 Rust   | Rocket     | https://ehoa2uwpphfrg3pshhwgi7xihi0wbulb.lambda-url.us-east-1.on.aws |
+| 🦀 Rust   | Actix      | https://qlkeo2h74asvqbznraayrzxd4q0yfgth.lambda-url.us-east-1.on.aws |
+| 🕊 Swift   | Vapor      | https://jsupnxhiyrtnu66zbke3wvoe5q0lywjo.lambda-url.us-east-1.on.aws |
