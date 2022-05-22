@@ -7,6 +7,7 @@ app "deno-http" {
       // todo: must use amd64: the official deno image only supports amd64
       platform = "amd64"
       dockerfile = "${path.app}/Dockerfile"
+      disable_entrypoint = true
     }
 
 
@@ -22,7 +23,11 @@ app "deno-http" {
   deploy {
     use "aws-lambda" {
       region = var.region
-      memory = 512
+      memory = 800
+      static_environment = {
+        "PORT" = "8080"
+        "READINESS_CHECK_PORT" = "8080"
+      }
     }
   }
 

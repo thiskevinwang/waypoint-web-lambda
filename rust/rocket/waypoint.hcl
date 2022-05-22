@@ -6,6 +6,7 @@ app "rocket" {
       buildkit   = true
       platform = "arm64"
       dockerfile = "${path.app}/Dockerfile"
+      disable_entrypoint = true
     }
 
     registry {
@@ -21,6 +22,10 @@ app "rocket" {
     use "aws-lambda" {
       region = var.region
       memory = 512
+      static_environment = {
+        "PORT" = "8080"
+        "READINESS_CHECK_PORT" = "8080"
+      }
     }
   }
 
