@@ -1,5 +1,24 @@
 project = "deno"
 
+config {
+  runner {
+    // All config in here is exposed only on runners.
+    env = {
+    }
+  }
+
+  // App config is here...
+}
+
+runner {
+  enabled = true
+
+  data_source "git" {
+    url  = "https://github.com/thiskevinwang/waypoint-web-lambda.git"
+    path = "deno/http"
+  }
+}
+
 app "deno-http" {
   build {
     use "docker" {
