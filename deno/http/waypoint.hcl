@@ -48,7 +48,7 @@ app "deno-http" {
   deploy {
     use "aws-lambda" {
       region = var.region
-      memory = 800
+      memory = 256
       static_environment = {
         "PORT" = "8080"
         "READINESS_CHECK_PORT" = "8080"
