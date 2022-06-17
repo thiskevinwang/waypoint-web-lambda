@@ -1,0 +1,23 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  api:
+    build: .
+    ports:
+      - "3005:3005"
+    links:
+      - db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_HOST=db
+      - PORT=3005
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
