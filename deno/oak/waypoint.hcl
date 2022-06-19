@@ -1,11 +1,10 @@
 project = "deno"
 
-app "deno-http" {
+app "deno-oak" {
   build {
     use "docker" {
       buildkit   = true
-      // todo: must use amd64: the official deno image only supports amd64
-      platform = "amd64"
+      // platform = "amd64"
       dockerfile = "${path.app}/Dockerfile"
       // disable_entrypoint = true
     }
@@ -17,19 +16,12 @@ app "deno-http" {
         tag        = var.tag
       }
     }
-
-    // use "aws-ecr-pull" {
-    //   region     = var.region
-    //   repository = "deno-http"
-    //   tag        = var.tag
-    // }
   }
 
   deploy {
     use "aws-lambda" {
       region = var.region
       memory = 256
-      architecture = "x86_64"
       static_environment = {
         "PORT" = "8080"
         "READINESS_CHECK_PORT" = "8080"
@@ -50,7 +42,7 @@ variable "region" {
   description = "AWS Region"
 }
 variable "repository" {
-  default     = "deno-http"
+  default     = "deno-oak"
   type        = string
   description = "AWS ECR Repository Name"
 } 

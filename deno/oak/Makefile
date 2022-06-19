@@ -1,4 +1,4 @@
-IMAGE_NAME=deno-http
+IMAGE_NAME=deno-oak
 IMAGE_TAG=latest
 PORT=8080
 DEV_CMD?=deno run --allow-env --allow-read --allow-net  main.ts

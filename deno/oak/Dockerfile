@@ -1,5 +1,7 @@
 ## This is linux/amd64
-FROM denoland/deno:latest
+# FROM denoland/deno:alpine-1.22.3
+## ARM Deno image
+FROM lukechannings/deno:v1.20.5
 
 # The port that your application listens to.
 EXPOSE 8000

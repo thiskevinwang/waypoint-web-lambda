@@ -33,11 +33,11 @@ func main() {
 		c.Header("Content-Type", "text/html; charset=utf-8")
 		c.String(http.StatusOK, `<html>
         <head>
-            <title>Hello from Gin 🥃!</title>
+            <title>Hello from Go + Gin 🥃!</title>
             <meta name="color-scheme" content="light dark">
         </head>
         <body>
-            <h3>Hello from Gin 🥃!</h3>
+            <h3>Hello from Go + Gin 🥃!</h3>
             <p>Visit <a href="/ping">/ping</a></p>
         </body>
     </html>

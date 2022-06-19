@@ -40,7 +40,7 @@ to AWS Lambda.
 
 | Language | Framework  | Lambda URL                                                           |
 | :------- | :--------- | :------------------------------------------------------------------- |
-| Deno     | Http       | https://wdhvowzhetvqlsi3m4xhnu3lgy0djauy.lambda-url.us-east-1.on.aws |
+| Deno     | Oak        | https://kafr7v6452ywy4ien6rh7xyvcq0zpdsk.lambda-url.us-east-1.on.aws |
 | Go       | Gin        | https://qvomz3om452pulf5joiuyojwc40ekond.lambda-url.us-east-1.on.aws |
 | Node     | Next.js    | https://6f75ux4u5be7x2n6qip7ftn5t40mkhzh.lambda-url.us-east-1.on.aws |
 | Node     | Express.js | https://h6hgqeiofnuk4rsk44a2kigo4i0ewjfn.lambda-url.us-east-1.on.aws |

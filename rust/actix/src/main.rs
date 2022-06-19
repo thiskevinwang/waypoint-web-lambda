@@ -8,11 +8,11 @@ async fn hello() -> impl Responder {
             r#"
     <html>
         <head>
-            <title>Hello from Actix ⚙️!</title>
+            <title>Hello from Rust + Actix ⚙️!</title>
             <meta name="color-scheme" content="light dark">
         </head>
         <body>
-            <h3>Hello from Actix ⚙️!</h3>
+            <h3>Hello from Rust + Actix ⚙️!</h3>
             <p>Visit <a href="/hey">/hey</a></p>
         </body>
     </html>"#,

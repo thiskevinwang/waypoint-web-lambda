@@ -15,11 +15,11 @@ export const createApp = () => {
         `<!DOCTYPE html>
 <html>
   <head>
-    <title>Hello from Express 🍔!</title>
+    <title>Hello from Node + Express 🍔!</title>
     <meta name="color-scheme" content="light dark">
   </head>
   <body>
-    <h3>Hello from Express 🍔!</h3>
+    <h3>Hello from Node + Express 🍔!</h3>
   </body>
 </html>
       `

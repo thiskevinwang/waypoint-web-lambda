@@ -12,11 +12,11 @@ def root():
     return """
     <html>
         <head>
-            <title>Hello from Flask ⚗️!</title>
+            <title>Hello from Python + Flask ⚗️!</title>
             <meta name="color-scheme" content="light dark">
         </head>
         <body>
-            <h3>Hello from Flask ⚗️!</h3>
+            <h3>Hello from Python + Flask ⚗️!</h3>
             <p>Visit <a href="/foobar">/foobar</a></p>
         </body>
     </html>

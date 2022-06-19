@@ -10,46 +10,46 @@ list:
 	@LC_ALL=C $(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
 .PHONY: build-all
-build-all: build-deno/http build-go/gin \
+build-all: build-deno/oak build-go/gin \
 	build-node/express build-node/next \
 	build-python/flask build-python/fastapi \
 	build-rust/actix build-rust/rocket \
 	build-swift/vapor-app
 
 .PHONY: init-all
-init-all: init-deno/http init-go/gin \
+init-all: init-deno/oak init-go/gin \
 	init-node/express init-node/next \
 	init-python/flask init-python/fastapi \
 	init-rust/actix init-rust/rocket \
 	init-swift/vapor-app
 
 .PHONY: up-all
-up-all: up-deno/http up-go/gin \
+up-all: up-deno/oak up-go/gin \
 	up-node/express up-node/next \
 	up-python/flask up-python/fastapi \
 	up-rust/actix up-rust/rocket \
 	up-swift/vapor-app
 
 .PHONY: get-url-all
-get-url-all: get-url-deno/http get-url-go/gin \
+get-url-all: get-url-deno/oak get-url-go/gin \
 	get-url-node/express get-url-node/next \
 	get-url-python/flask get-url-python/fastapi \
 	get-url-rust/actix get-url-rust/rocket \
 	get-url-swift/vapor-app
 
-.PHONY: dev-deno/http build-deno/http run-deno/http init-deno/http up-deno/http get-url-deno/http
-dev-deno/http:
-	@$(MAKE) -C deno/http dev
-build-deno/http:
-	@$(MAKE) -C deno/http build
-run-deno/http:
-	@$(MAKE) -C deno/http run
-init-deno/http:
-	@$(MAKE) -C deno/http init
-up-deno/http:
-	@$(MAKE) -C deno/http up
-get-url-deno/http:
-	@$(MAKE) -C deno/http get-url
+.PHONY: dev-deno/oak build-deno/oak run-deno/oak init-deno/oak up-deno/oak get-url-deno/oak
+dev-deno/oak:
+	@$(MAKE) -C deno/oak dev
+build-deno/oak:
+	@$(MAKE) -C deno/oak build
+run-deno/oak:
+	@$(MAKE) -C deno/oak run
+init-deno/oak:
+	@$(MAKE) -C deno/oak init
+up-deno/oak:
+	@$(MAKE) -C deno/oak up
+get-url-deno/oak:
+	@$(MAKE) -C deno/oak get-url
 
 .PHONY: dev-go/gin build-go/gin run-go/gin init-go/gin up-go/gin get-url-go/gin
 dev-go/gin:

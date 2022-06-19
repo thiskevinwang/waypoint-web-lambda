@@ -8,11 +8,11 @@ func routes(_ app: Application) throws {
             body: """
     <html>
         <head>
-            <title>Hello from Vapor 💨!</title>
+            <title>Hello from Swift + Vapor 💨!</title>
             <meta name="color-scheme" content="light dark">
         </head>
         <body>
-            <h3>Hello from Vapor 💨!</h3>
+            <h3>Hello from Swift + Vapor 💨!</h3>
             <p>Visit <a href="/hello">/hello</a></p>
         </body>
     </html>

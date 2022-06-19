@@ -20,11 +20,11 @@ fn index() -> content::Html<&'static str> {
         r#"
     <html>
         <head>
-            <title>Hello from Rocket 🚀!</title>
+            <title>Hello from Rust + Rocket 🚀!</title>
             <meta name="color-scheme" content="light dark">
         </head>
         <body>
-            <h3>Hello from Rocket 🚀!</h3>
+            <h3>Hello from Rust + Rocket 🚀!</h3>
             <p>Visit <a href="/count">/count</a></p>
         </body>
     </html>"#,
