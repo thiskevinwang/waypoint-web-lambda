@@ -15,7 +15,7 @@ runner {
 
   data_source "git" {
     url  = "https://github.com/thiskevinwang/waypoint-web-lambda.git"
-    path = "deno/http"
+    path = "python/flask"
   }
 }
 
@@ -23,7 +23,7 @@ app "flask" {
   build {
     use "docker" {
       buildkit   = true
-      platform = "arm64"
+      platform   = "arm64"
       dockerfile = "${path.app}/Dockerfile"
       // disable_entrypoint = true
     }
@@ -42,7 +42,7 @@ app "flask" {
       region = var.region
       memory = 512
       static_environment = {
-        "PORT" = "8080"
+        "PORT"                 = "8080"
         "READINESS_CHECK_PORT" = "8080"
       }
     }
@@ -64,7 +64,7 @@ variable "repository" {
   default     = "python-flask"
   type        = string
   description = "AWS ECR Repository Name"
-} 
+}
 variable "tag" {
   default     = "latest"
   type        = string
