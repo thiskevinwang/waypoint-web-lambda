@@ -30,7 +30,18 @@ func main() {
 	// }))
 
 	r.GET("/", func(c *gin.Context) {
-		c.String(http.StatusOK, "Hello from Gin 🐹🥃!")
+		c.Header("Content-Type", "text/html; charset=utf-8")
+		c.String(http.StatusOK, `<html>
+        <head>
+            <title>Hello from Gin 🥃!</title>
+            <meta name="color-scheme" content="light dark">
+        </head>
+        <body>
+            <h3>Hello from Gin 🥃!</h3>
+            <p>Visit <a href="/ping">/ping</a></p>
+        </body>
+    </html>
+		`)
 	})
 
 	r.GET("/ping", func(c *gin.Context) {

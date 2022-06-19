@@ -5,6 +5,7 @@ use std::sync::atomic::AtomicUsize;
 use std::sync::atomic::Ordering;
 
 use rocket::config::Config;
+use rocket::response::content;
 
 #[macro_use]
 extern crate rocket;
@@ -14,8 +15,20 @@ struct HitCount {
 }
 
 #[get("/")]
-fn index() -> &'static str {
-    "Hello from Rocket 🚀🦀⚙️! Try visiting /count"
+fn index() -> content::Html<&'static str> {
+    content::Html(
+        r#"
+    <html>
+        <head>
+            <title>Hello from Rocket 🚀!</title>
+            <meta name="color-scheme" content="light dark">
+        </head>
+        <body>
+            <h3>Hello from Rocket 🚀!</h3>
+            <p>Visit <a href="/count">/count</a></p>
+        </body>
+    </html>"#,
+    )
 }
 
 #[get("/delay/<seconds>")]

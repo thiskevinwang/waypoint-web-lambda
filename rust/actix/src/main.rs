@@ -1,8 +1,22 @@
-use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{get, http::header, post, web, App, HttpResponse, HttpServer, Responder};
 
 #[get("/")]
 async fn hello() -> impl Responder {
-    HttpResponse::Ok().body("Hello from Actix ⚙️🦀!")
+    HttpResponse::Ok()
+        .insert_header(header::ContentType(mime::TEXT_HTML_UTF_8))
+        .body(
+            r#"
+    <html>
+        <head>
+            <title>Hello from Actix ⚙️!</title>
+            <meta name="color-scheme" content="light dark">
+        </head>
+        <body>
+            <h3>Hello from Actix ⚙️!</h3>
+            <p>Visit <a href="/hey">/hey</a></p>
+        </body>
+    </html>"#,
+        )
 }
 
 #[post("/echo")]

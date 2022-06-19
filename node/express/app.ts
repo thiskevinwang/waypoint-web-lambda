@@ -8,7 +8,22 @@ export const createApp = () => {
   app.use(morgan('short'))
 
   app.get('/', (req, res) => {
-    res.status(200).send('Hello from Node.js & Express!')
+    res
+      .status(200)
+      .type('html')
+      .send(
+        `<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello from Express 🍔!</title>
+    <meta name="color-scheme" content="light dark">
+  </head>
+  <body>
+    <h3>Hello from Express 🍔!</h3>
+  </body>
+</html>
+      `
+      )
   })
 
   // default 404 handler

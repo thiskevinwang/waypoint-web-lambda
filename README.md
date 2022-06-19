@@ -44,6 +44,7 @@ to AWS Lambda.
 | Go       | Gin        | https://qvomz3om452pulf5joiuyojwc40ekond.lambda-url.us-east-1.on.aws |
 | Node     | Next.js    | https://6f75ux4u5be7x2n6qip7ftn5t40mkhzh.lambda-url.us-east-1.on.aws |
 | Node     | Express.js | https://h6hgqeiofnuk4rsk44a2kigo4i0ewjfn.lambda-url.us-east-1.on.aws |
+| Python   | FastAPI    | https://6tgotnpviamif7ahs54gieskqy0hehao.lambda-url.us-east-1.on.aws |
 | Python   | Flask      | https://vfxxckern6sxk4gd7mjunj4zoi0lcwwd.lambda-url.us-east-1.on.aws |
 | Rust     | Rocket     | https://ofsktryxlax4xf7vnzno4425lq0bqsej.lambda-url.us-east-1.on.aws |
 | Rust     | Actix      | https://qlkeo2h74asvqbznraayrzxd4q0yfgth.lambda-url.us-east-1.on.aws |

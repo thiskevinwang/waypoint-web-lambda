@@ -12,24 +12,30 @@ list:
 .PHONY: build-all
 build-all: build-deno/http build-go/gin \
 	build-node/express build-node/next \
-	build-python/flask \
+	build-python/flask build-python/fastapi \
 	build-rust/actix build-rust/rocket \
 	build-swift/vapor-app
 
 .PHONY: init-all
 init-all: init-deno/http init-go/gin \
 	init-node/express init-node/next \
-	init-python/flask \
+	init-python/flask init-python/fastapi \
 	init-rust/actix init-rust/rocket \
 	init-swift/vapor-app
 
 .PHONY: up-all
 up-all: up-deno/http up-go/gin \
 	up-node/express up-node/next \
-	up-python/flask \
+	up-python/flask up-python/fastapi \
 	up-rust/actix up-rust/rocket \
 	up-swift/vapor-app
 
+.PHONY: get-url-all
+get-url-all: get-url-deno/http get-url-go/gin \
+	get-url-node/express get-url-node/next \
+	get-url-python/flask get-url-python/fastapi \
+	get-url-rust/actix get-url-rust/rocket \
+	get-url-swift/vapor-app
 
 .PHONY: dev-deno/http build-deno/http run-deno/http init-deno/http up-deno/http get-url-deno/http
 dev-deno/http:
