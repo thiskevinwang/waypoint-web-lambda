@@ -25,11 +25,13 @@ run-deno-http:
 	@echo " => Running deno/http..."
 	@$(MAKE) -C deno/http run
 
-.PHONY: build-go-gin run-go-gin
+.PHONY: dev-go-gin build-go-gin run-go-gin
+dev-go-gin:
+	@echo " => Development go-gin..."
+	@$(MAKE) -C go/gin dev
 build-go-gin:
 	@echo " => Building go/gin..."
 	@$(MAKE) -C go/gin build
-
 run-go-gin:
 	@echo " => Running go/gin..."
 	@$(MAKE) -C go/gin run

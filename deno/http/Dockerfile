@@ -1,5 +1,3 @@
-# docker build -t deno-http:latest .
-# docker run --rm --tty -p 8000:8000 deno-http:latest
 ## This is linux/amd64
 FROM denoland/deno:latest
 
@@ -7,7 +5,7 @@ FROM denoland/deno:latest
 EXPOSE 8000
 ENV READINESS_CHECK_PORT=8000
 ENV PORT=8000
-COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.3.2 /lambda-adapter /opt/extensions/lambda-adapter
+COPY --from=ghcr.io/thiskevinwang/aws-lambda-adapter:0.3.2 /lambda-adapter /opt/extensions/lambda-adapter
 
 WORKDIR /app
 

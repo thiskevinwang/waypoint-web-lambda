@@ -1,5 +1,3 @@
-# docker build -t node-express:latest .
-# docker run --rm --tty -p 8080:8080 node-express:latest
 FROM node:16-alpine as COMPILER
 WORKDIR /usr/app
 # COPY package*.json ./
@@ -11,19 +9,17 @@ COPY index.ts ./
 RUN npm i
 RUN npm run build
 
+# https://github.com/GoogleContainerTools/distroless/blob/main/examples/nodejs/Dockerfile
+# FROM gcr.io/distroless/nodejs:16
 FROM node:16-alpine
+
 # READINESS_CHECK_PORT and PORT are used by https://github.com/aws-samples/aws-lambda-adapter/blob/main/src/main.rs
 ENV READINESS_CHECK_PORT=3005
 ENV PORT=3005
-COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.3.2 /lambda-adapter /opt/extensions/lambda-adapter
+COPY --from=ghcr.io/thiskevinwang/aws-lambda-adapter:0.3.2 /lambda-adapter /opt/extensions/lambda-adapter
 
 COPY --from=COMPILER /usr/app/out ./out
 COPY --from=COMPILER /usr/app/package*.json ./
 COPY --from=COMPILER /usr/app/node_modules ./node_modules
+# CMD ["out/index.js"]
 CMD ["npm", "start"]
-
-# # https://github.com/GoogleContainerTools/distroless/blob/main/examples/nodejs/Dockerfile
-# # FROM gcr.io/distroless/nodejs:16
-# WORKDIR /usr/app
-# COPY --from=BUILDER /usr/app ./
-# CMD ["index.js"]
