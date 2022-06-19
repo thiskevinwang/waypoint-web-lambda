@@ -28,3 +28,8 @@ init:
 up:
 	@echo " => Deploying Waypoint project"
 	@$(WP_CMD) up -local=true
+
+.PHONY: get-url
+get-url:
+	@echo " => Getting URL of $(IMAGE_NAME):$(IMAGE_TAG)"
+	@$(WP_CMD) release list -json | jq -r '.[].url'

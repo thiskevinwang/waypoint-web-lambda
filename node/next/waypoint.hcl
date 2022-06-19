@@ -6,13 +6,13 @@ app "next" {
       buildkit   = true
       platform = "arm64"
       dockerfile = "${path.app}/Dockerfile"
-      disable_entrypoint = true
+      // disable_entrypoint = true
     }
 
     registry {
       use "aws-ecr" {
         region     = var.region
-        repository = "node-next"
+        repository = var.repository
         tag        = var.tag
       }
     }
@@ -36,14 +36,18 @@ app "next" {
   }
 }
 
-variable "tag" {
-  default     = "latest"
-  type        = string
-  description = "A tag"
-}
-
 variable "region" {
   default     = "us-east-1"
   type        = string
   description = "AWS Region"
+}
+variable "repository" {
+  default     = "node-next"
+  type        = string
+  description = "AWS ECR Repository Name"
+}
+variable "tag" {
+  default     = "latest"
+  type        = string
+  description = "A tag"
 }

@@ -12,7 +12,7 @@ app "gin" {
     registry {
       use "aws-ecr" {
         region     = var.region
-        repository = "go-gin"
+        repository = var.repository
         tag        = var.tag
       }
     }
@@ -32,14 +32,18 @@ app "gin" {
   }
 }
 
-variable "tag" {
-  default     = "latest"
-  type        = string
-  description = "A tag"
-}
-
 variable "region" {
   default     = "us-east-1"
   type        = string
   description = "AWS Region"
+}
+variable "repository" {
+  default     = "go-gin"
+  type        = string
+  description = "AWS ECR Repository Name"
+}
+variable "tag" {
+  default     = "latest"
+  type        = string
+  description = "A tag"
 }

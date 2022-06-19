@@ -13,7 +13,7 @@ app "express" {
     registry {
       use "aws-ecr" {
         region     = var.region
-        repository = "nodejs-express"
+        repository = var.repository
         tag        = var.tag
       }
     }
@@ -37,14 +37,18 @@ app "express" {
   }
 }
 
-variable "tag" {
-  default     = "latest"
-  type        = string
-  description = "A tag"
-}
-
 variable "region" {
   default     = "us-east-1"
   type        = string
   description = "AWS Region"
+}
+variable "repository" {
+  default     = "nodejs-express"
+  type        = string
+  description = "AWS ECR Repository Name"
+}
+variable "tag" {
+  default     = "latest"
+  type        = string
+  description = "A tag"
 }

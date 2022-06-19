@@ -12,7 +12,7 @@ app "actix" {
     registry {
       use "aws-ecr" {
         region     = var.region
-        repository = "rust-actix"
+        repository = var.repository
         tag        = var.tag
       }
     }
@@ -36,14 +36,18 @@ app "actix" {
   }
 }
 
-variable "tag" {
-  default     = "latest"
-  type        = string
-  description = "A tag"
-}
-
 variable "region" {
   default     = "us-east-1"
   type        = string
   description = "AWS Region"
+}
+variable "repository" {
+  default     = "rust-actix"
+  type        = string
+  description = "AWS ECR Repository Name"
+}
+variable "tag" {
+  default     = "latest"
+  type        = string
+  description = "A tag"
 }

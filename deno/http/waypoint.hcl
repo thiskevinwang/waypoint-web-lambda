@@ -1,24 +1,5 @@
 project = "deno"
 
-config {
-  runner {
-    // All config in here is exposed only on runners.
-    env = {
-    }
-  }
-
-  // App config is here...
-}
-
-runner {
-  enabled = true
-
-  data_source "git" {
-    url  = "https://github.com/thiskevinwang/waypoint-web-lambda.git"
-    path = "deno/http"
-  }
-}
-
 app "deno-http" {
   build {
     use "docker" {
@@ -26,14 +7,13 @@ app "deno-http" {
       // todo: must use amd64: the official deno image only supports amd64
       platform = "amd64"
       dockerfile = "${path.app}/Dockerfile"
-      disable_entrypoint = true
+      // disable_entrypoint = true
     }
-
 
     registry {
       use "aws-ecr" {
         region     = var.region
-        repository = "deno-http"
+        repository = var.repository
         tag        = var.tag
       }
     }
@@ -49,6 +29,7 @@ app "deno-http" {
     use "aws-lambda" {
       region = var.region
       memory = 256
+      architecture = "x86_64"
       static_environment = {
         "PORT" = "8080"
         "READINESS_CHECK_PORT" = "8080"
@@ -63,14 +44,18 @@ app "deno-http" {
   }
 }
 
-variable "tag" {
-  default     = "latest"
-  type        = string
-  description = "A tag"
-}
-
 variable "region" {
   default     = "us-east-1"
   type        = string
   description = "AWS Region"
+}
+variable "repository" {
+  default     = "deno-http"
+  type        = string
+  description = "AWS ECR Repository Name"
+} 
+variable "tag" {
+  default     = "latest"
+  type        = string
+  description = "A tag"
 }

@@ -12,7 +12,7 @@ app "rocket" {
     registry {
       use "aws-ecr" {
         region     = var.region
-        repository = "rust-rocket"
+        repository = var.repository
         tag        = var.tag
       }
     }
@@ -36,14 +36,18 @@ app "rocket" {
   }
 }
 
-variable "tag" {
-  default     = "latest"
-  type        = string
-  description = "A tag"
-}
-
 variable "region" {
   default     = "us-east-1"
   type        = string
   description = "AWS Region"
+}
+variable "repository" {
+  default     = "rust-rocket"
+  type        = string
+  description = "AWS ECR Repository Name"
+}
+variable "tag" {
+  default     = "latest"
+  type        = string
+  description = "A tag"
 }

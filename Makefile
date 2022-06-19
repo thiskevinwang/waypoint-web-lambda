@@ -31,7 +31,7 @@ up-all: up-deno/http up-go/gin \
 	up-swift/vapor-app
 
 
-.PHONY: dev-deno/http build-deno/http run-deno/http init-deno/http up-deno/http
+.PHONY: dev-deno/http build-deno/http run-deno/http init-deno/http up-deno/http get-url-deno/http
 dev-deno/http:
 	@$(MAKE) -C deno/http dev
 build-deno/http:
@@ -42,7 +42,10 @@ init-deno/http:
 	@$(MAKE) -C deno/http init
 up-deno/http:
 	@$(MAKE) -C deno/http up
+get-url-deno/http:
+	@$(MAKE) -C deno/http get-url
 
+.PHONY: dev-go/gin build-go/gin run-go/gin init-go/gin up-go/gin get-url-go/gin
 dev-go/gin:
 	@$(MAKE) -C go/gin dev
 build-go/gin:
@@ -53,7 +56,10 @@ init-go/gin:
 	@$(MAKE) -C go/gin init
 up-go/gin:
 	@$(MAKE) -C go/gin up
+get-url-go/gin:
+	@$(MAKE) -C go/gin get-url
 
+.PHONY: dev-node/express build-node/express run-node/express init-node/express up-node/express get-url-node/express
 dev-node/express:
 	@$(MAKE) -C node/express dev
 build-node/express:
@@ -64,7 +70,10 @@ init-node/express:
 	@$(MAKE) -C node/express init
 up-node/express:
 	@$(MAKE) -C node/express up
+get-url-node/express:
+	@$(MAKE) -C node/express get-url
 
+.PHONY: dev-node/next build-node/next run-node/next init-node/next up-node/next get-url-node/next
 dev-node/next:
 	@$(MAKE) -C node/next dev
 build-node/next:
@@ -75,7 +84,10 @@ init-node/next:
 	@$(MAKE) -C node/next init
 up-node/next:
 	@$(MAKE) -C node/next up
+get-url-node/next:
+	@$(MAKE) -C node/next get-url
 
+.PHONY: dev-python/flask build-python/flask run-python/flask init-python/flask up-python/flask get-url-python/flask
 dev-python/flask:
 	@$(MAKE) -C python/flask dev
 build-python/flask:
@@ -86,7 +98,10 @@ init-python/flask:
 	@$(MAKE) -C python/flask init
 up-python/flask:
 	@$(MAKE) -C python/flask up
+get-url-python/flask:
+	@$(MAKE) -C python/flask get-url
 
+.PHONY: dev-rust/actix build-rust/actix run-rust/actix init-rust/actix up-rust/actix get-url-rust/actix
 dev-rust/actix:
 	@$(MAKE) -C rust/actix dev
 build-rust/actix:
@@ -97,7 +112,10 @@ init-rust/actix:
 	@$(MAKE) -C rust/actix init
 up-rust/actix:
 	@$(MAKE) -C rust/actix up
+get-url-rust/actix:
+	@$(MAKE) -C rust/actix get-url
 
+.PHONY: dev-rust/rocket build-rust/rocket run-rust/rocket init-rust/rocket up-rust/rocket get-url-rust/rocket
 dev-rust/rocket:
 	@$(MAKE) -C rust/rocket dev
 build-rust/rocket:
@@ -108,7 +126,10 @@ init-rust/rocket:
 	@$(MAKE) -C rust/rocket init
 up-rust/rocket:
 	@$(MAKE) -C rust/rocket up
+get-url-rust/rocket:
+	@$(MAKE) -C rust/rocket get-url
 
+.PHONY: dev-swift/vapor-app build-swift/vapor-app run-swift/vapor-app init-swift/vapor-app up-swift/vapor-app get-url-swift/vapor-app
 dev-swift/vapor-app:
 	@$(MAKE) -C swift/vapor-app dev
 build-swift/vapor-app:
@@ -119,4 +140,5 @@ init-swift/vapor-app:
 	@$(MAKE) -C swift/vapor-app init
 up-swift/vapor-app:
 	@$(MAKE) -C swift/vapor-app up
-	
+get-url-swift/vapor-app:
+	@$(MAKE) -C swift/vapor-app get-url
