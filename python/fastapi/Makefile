@@ -1,7 +1,7 @@
-IMAGE_NAME=python-flask
+IMAGE_NAME=python-fastapi
 IMAGE_TAG=latest
 PORT=8080
-DEV_CMD?=python3 app.py
+DEV_CMD?=uvicorn main:app --reload
 WP_CMD?="$$GOPATH/bin/waypoint"
 
 .PHONY: dev

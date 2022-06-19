@@ -87,6 +87,20 @@ up-node/next:
 get-url-node/next:
 	@$(MAKE) -C node/next get-url
 
+.PHONY: dev-python/fastapi build-python/fastapi run-python/fastapi init-python/fastapi up-python/fastapi get-url-python/fastapi
+dev-python/fastapi:
+	@$(MAKE) -C python/fastapi dev
+build-python/fastapi:
+	@$(MAKE) -C python/fastapi build
+run-python/fastapi:
+	@$(MAKE) -C python/fastapi run
+init-python/fastapi:
+	@$(MAKE) -C python/fastapi init
+up-python/fastapi:
+	@$(MAKE) -C python/fastapi up
+get-url-python/fastapi:
+	@$(MAKE) -C python/fastapi get-url
+
 .PHONY: dev-python/flask build-python/flask run-python/flask init-python/flask up-python/flask get-url-python/flask
 dev-python/flask:
 	@$(MAKE) -C python/flask dev

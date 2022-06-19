@@ -8,8 +8,8 @@ host = os.environ.get('HOST', '0.0.0.0')
 
 
 @app.route('/')
-def hello_world():
-    return 'Hey, we have Flask in a Docker container!'
+def root():
+    return 'Hello from Flask ⚗️!'
 
 
 @app.route("/<name>")
