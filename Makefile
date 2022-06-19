@@ -10,83 +10,113 @@ list:
 	@LC_ALL=C $(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
 .PHONY: build-all
-build-all: build-deno-http build-go-gin \
-	build-node-express build-node-next \
-	build-python-flask \
-	build-rust-actix build-rust-rocket \
-	build-swift-vapor-app
+build-all: build-deno/http build-go/gin \
+	build-node/express build-node/next \
+	build-python/flask \
+	build-rust/actix build-rust/rocket \
+	build-swift/vapor-app
 
-.PHONY: build-deno-http run-deno-http
-build-deno-http:
-	@echo " => Building deno/http..."
+.PHONY: init-all
+init-all: init-deno/http init-go/gin \
+	init-node/express init-node/next \
+	init-python/flask \
+	init-rust/actix init-rust/rocket \
+	init-swift/vapor-app
+
+.PHONY: up-all
+up-all: up-deno/http up-go/gin \
+	up-node/express up-node/next \
+	up-python/flask \
+	up-rust/actix up-rust/rocket \
+	up-swift/vapor-app
+
+
+.PHONY: dev-deno/http build-deno/http run-deno/http init-deno/http up-deno/http
+dev-deno/http:
+	@$(MAKE) -C deno/http dev
+build-deno/http:
 	@$(MAKE) -C deno/http build
-
-run-deno-http:
-	@echo " => Running deno/http..."
+run-deno/http:
 	@$(MAKE) -C deno/http run
+init-deno/http:
+	@$(MAKE) -C deno/http init
+up-deno/http:
+	@$(MAKE) -C deno/http up
 
-.PHONY: dev-go-gin build-go-gin run-go-gin
-dev-go-gin:
-	@echo " => Development go-gin..."
+dev-go/gin:
 	@$(MAKE) -C go/gin dev
-build-go-gin:
-	@echo " => Building go/gin..."
+build-go/gin:
 	@$(MAKE) -C go/gin build
-run-go-gin:
-	@echo " => Running go/gin..."
+run-go/gin:
 	@$(MAKE) -C go/gin run
+init-go/gin:
+	@$(MAKE) -C go/gin init
+up-go/gin:
+	@$(MAKE) -C go/gin up
 
-.PHONY: build-node-express run-node-express
-build-node-express:
-	@echo " => Building node/express..."
+dev-node/express:
+	@$(MAKE) -C node/express dev
+build-node/express:
 	@$(MAKE) -C node/express build
-
-run-node-express:
-	@echo " => Running node/express..."
+run-node/express:
 	@$(MAKE) -C node/express run
+init-node/express:
+	@$(MAKE) -C node/express init
+up-node/express:
+	@$(MAKE) -C node/express up
 
-.PHONY: build-node-next run-node-next
-build-node-next:
-	@echo " => Building node/next..."
+dev-node/next:
+	@$(MAKE) -C node/next dev
+build-node/next:
 	@$(MAKE) -C node/next build
-
-run-node-next:
-	@echo " => Running node/next..."
+run-node/next:
 	@$(MAKE) -C node/next run
+init-node/next:
+	@$(MAKE) -C node/next init
+up-node/next:
+	@$(MAKE) -C node/next up
 
-.PHONY: build-python-flask run-python-flask
-build-python-flask:
-	@echo " => Building python/flask..."
+dev-python/flask:
+	@$(MAKE) -C python/flask dev
+build-python/flask:
 	@$(MAKE) -C python/flask build
-
-run-python-flask:
-	@echo " => Running python/flask..."
+run-python/flask:
 	@$(MAKE) -C python/flask run
+init-python/flask:
+	@$(MAKE) -C python/flask init
+up-python/flask:
+	@$(MAKE) -C python/flask up
 
-.PHONY: build-rust-actix run-rust-actix
-build-rust-actix:
-	@echo " => Building rust/actix..."
+dev-rust/actix:
+	@$(MAKE) -C rust/actix dev
+build-rust/actix:
 	@$(MAKE) -C rust/actix build
-
-run-rust-actix:
-	@echo " => Running rust/actix..."
+run-rust/actix:
 	@$(MAKE) -C rust/actix run
+init-rust/actix:
+	@$(MAKE) -C rust/actix init
+up-rust/actix:
+	@$(MAKE) -C rust/actix up
 
-.PHONY: build-rust-rocket run-rust-rocket
-build-rust-rocket:
-	@echo " => Building rust/rocket..."
+dev-rust/rocket:
+	@$(MAKE) -C rust/rocket dev
+build-rust/rocket:
 	@$(MAKE) -C rust/rocket build
-
-run-rust-rocket:
-	@echo " => Running rust/rocket..."
+run-rust/rocket:
 	@$(MAKE) -C rust/rocket run
+init-rust/rocket:
+	@$(MAKE) -C rust/rocket init
+up-rust/rocket:
+	@$(MAKE) -C rust/rocket up
 
-.PHONY: build-swift-vapor-app
-build-swift-vapor-app:
-	@echo " => Building swift/vapor-app..."
+dev-swift/vapor-app:
+	@$(MAKE) -C swift/vapor-app dev
+build-swift/vapor-app:
 	@$(MAKE) -C swift/vapor-app build
-
-run-swift-vapor-app:
-	@echo " => Running swift/vapor-app..."
+run-swift/vapor-app:
 	@$(MAKE) -C swift/vapor-app run
-
+init-swift/vapor-app:
+	@$(MAKE) -C swift/vapor-app init
+up-swift/vapor-app:
+	@$(MAKE) -C swift/vapor-app up
+	

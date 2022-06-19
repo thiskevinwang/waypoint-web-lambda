@@ -1,13 +1,30 @@
-image_name=deno-http
-image_tag=latest
-port=8080
+IMAGE_NAME=deno-http
+IMAGE_TAG=latest
+PORT=8080
+DEV_CMD?=deno run --allow-env --allow-read --allow-net  main.ts
+WP_CMD?="$$GOPATH/bin/waypoint"
+
+.PHONY: dev
+dev:
+	@echo " => Running $(IMAGE_NAME) in development mode"
+	@$(DEV_CMD)
 
 .PHONY: build
 build:
-	@echo " => Building $(image_name):$(image_tag)"
-	@docker build -t $(image_name):$(image_tag) .
+	@echo " => Building $(IMAGE_NAME):$(IMAGE_TAG)"
+	@docker build -t $(IMAGE_NAME):$(IMAGE_TAG) .
 
 .PHONY: run
 run:
-	@echo " => Running $(image_name):$(image_tag) on port $(port)"
-	@docker run -it --tty -e PORT=$(port) -p $(port):$(port) $(image_name):$(image_tag)
+	@echo " => Running $(IMAGE_NAME):$(IMAGE_TAG) on PORT $(PORT)"
+	@docker run -it --tty -e PORT=$(PORT) -p $(PORT):$(PORT) $(IMAGE_NAME):$(IMAGE_TAG)
+
+.PHONY: init
+init:
+	@echo " => Initializing Waypoint project"
+	@waypoint init
+
+.PHONY: up
+up:
+	@echo " => Deploying Waypoint project"
+	@$(WP_CMD) up -local=true
