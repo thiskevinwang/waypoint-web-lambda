@@ -21,28 +21,28 @@ runner {
 
 app "deno-http" {
   build {
-    // use "docker" {
-    //   buildkit   = true
-    //   // todo: must use amd64: the official deno image only supports amd64
-    //   platform = "amd64"
-    //   dockerfile = "${path.app}/Dockerfile"
-    //   disable_entrypoint = true
-    // }
-
-
-    // registry {
-    //   use "aws-ecr" {
-    //     region     = var.region
-    //     repository = "deno-http"
-    //     tag        = var.tag
-    //   }
-    // }
-
-    use "aws-ecr-pull" {
-      region     = var.region
-      repository = "deno-http"
-      tag        = var.tag
+    use "docker" {
+      buildkit   = true
+      // todo: must use amd64: the official deno image only supports amd64
+      platform = "amd64"
+      dockerfile = "${path.app}/Dockerfile"
+      disable_entrypoint = true
     }
+
+
+    registry {
+      use "aws-ecr" {
+        region     = var.region
+        repository = "deno-http"
+        tag        = var.tag
+      }
+    }
+
+    // use "aws-ecr-pull" {
+    //   region     = var.region
+    //   repository = "deno-http"
+    //   tag        = var.tag
+    // }
   }
 
   deploy {
