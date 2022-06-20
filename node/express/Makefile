@@ -21,12 +21,12 @@ run:
 
 .PHONY: init
 init:
-	@echo " => Initializing Waypoint project"
-	@waypoint init
+	@echo " => Initializing $(IMAGE_NAME)"
+	@$(WP_CMD) init
 
 .PHONY: up
 up:
-	@echo " => Deploying Waypoint project"
+	@echo " => Deploying $(IMAGE_NAME)"
 	@$(WP_CMD) up
 
 .PHONY: get-url
