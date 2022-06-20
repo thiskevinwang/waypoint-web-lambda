@@ -1,8 +1,8 @@
 import { Application, Router } from "./deps.ts";
 
 const router = new Router();
-router.get("/", (ctx) => {
-  ctx.response.body = `<!DOCTYPE html>
+router.get("/", ({ response }) => {
+	response.body = `<!DOCTYPE html>
   <html>
     <head>
       <title>Hello from Deno 🦕 + Oak 🌳!</title>
@@ -16,8 +16,8 @@ router.get("/", (ctx) => {
         `;
 });
 
-router.get("/ping", (ctx) => {
-  ctx.response.body = "pong";
+router.get("/ping", ({ response }) => {
+	response.body = "pong";
 });
 
 const app = new Application();
@@ -27,6 +27,6 @@ app.use(router.allowedMethods());
 const PORT = parseInt(Deno.env.get("PORT") || "5000");
 
 app.addEventListener("listen", (e) =>
-  console.log(`Listening on http://localhost:${PORT}`)
+	console.log(`Listening on http://localhost:${PORT}`)
 );
 await app.listen({ port: PORT });

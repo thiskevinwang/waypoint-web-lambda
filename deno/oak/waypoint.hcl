@@ -6,7 +6,7 @@ app "deno-oak" {
       buildkit   = true
       // platform = "amd64"
       dockerfile = "${path.app}/Dockerfile"
-      // disable_entrypoint = true
+      disable_entrypoint = true
     }
 
     registry {

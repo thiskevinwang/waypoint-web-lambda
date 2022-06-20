@@ -4,7 +4,6 @@
 FROM lukechannings/deno:v1.20.5
 
 # The port that your application listens to.
-EXPOSE 8000
 ENV READINESS_CHECK_PORT=8000
 ENV PORT=8000
 COPY --from=ghcr.io/thiskevinwang/aws-lambda-adapter:0.3.2 /lambda-adapter /opt/extensions/lambda-adapter
@@ -20,7 +19,7 @@ COPY deps.ts .
 RUN deno cache deps.ts
 
 # These steps will be re-run upon each file change in your working directory:
-ADD . .
+ADD main.ts .
 # Compile the main app so that it doesn't need to be compiled each startup/entry.
 RUN deno cache main.ts
 

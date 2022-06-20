@@ -11,11 +11,11 @@ async def read_root():
     return """
     <html>
         <head>
-            <title>Hello from FastAPI ⚡️!</title>
+            <title>Hello from Python + FastAPI ⚡️!</title>
             <meta name="color-scheme" content="light dark">
         </head>
         <body>
-            <h3>Hello from FastAPI ⚡️!</h3>
+            <h3>Hello from Python +FastAPI ⚡️!</h3>
             <p>Visit <a href="/items/9000">/items/9000</a></p>
         </body>
     </html>

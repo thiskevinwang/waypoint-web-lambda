@@ -6,28 +6,33 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	// "github.com/mvrilo/go-redoc"
-	// ginredoc "github.com/mvrilo/go-redoc/gin"
+	//"github.com/mvrilo/go-redoc"
+	//ginredoc "github.com/mvrilo/go-redoc/gin"
 )
 
-// func BasicMiddleware() gin.HandlerFunc {
-// 	return func(c *gin.Context) {
-// 		fmt.Println(" ==> Middleware 🐰 🎩 🪄")
-// 		c.Next()
-// 	}
-// }
+//func BasicMiddleware() gin.HandlerFunc {
+//return func(c *gin.Context) {
+//fmt.Println(" ==> Middleware 🐰 🎩 🪄")
+//_, ok := c.GetQuery("user")
+//if !ok {
+//c.AbortWithStatus(http.StatusBadRequest)
+//return
+//}
+//c.Next()
+//}
+//}
 
 func main() {
 	r := gin.Default()
-	// r.Use(BasicMiddleware())
+	//r.Use(BasicMiddleware())
 
-	// r.Use(ginredoc.New(redoc.Redoc{
-	// 	Title:       "Example API",
-	// 	Description: "Example API Description",
-	// 	SpecFile:    "./swagger.yaml",
-	// 	SpecPath:    "/swagger.yaml",
-	// 	DocsPath:    "/docs",
-	// }))
+	//r.Use(ginredoc.New(redoc.Redoc{
+	//Title:       "Example API",
+	//Description: "Example API Description",
+	//SpecFile:    "./swagger.yaml",
+	//SpecPath:    "/swagger.yaml",
+	//DocsPath:    "/docs",
+	//}))
 
 	r.GET("/", func(c *gin.Context) {
 		c.Header("Content-Type", "text/html; charset=utf-8")

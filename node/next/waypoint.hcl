@@ -6,7 +6,7 @@ app "next" {
       buildkit   = true
       platform = "arm64"
       dockerfile = "${path.app}/Dockerfile"
-      // disable_entrypoint = true
+      disable_entrypoint = true
     }
 
     registry {

@@ -6,7 +6,8 @@ app "gin" {
       buildkit   = true
       // platform   = "amd64"
       platform = "arm64"
-      dockerfile = "${path.app}/Dockerfile"
+ 			dockerfile = "${path.app}/Dockerfile"
+      disable_entrypoint = true
     }
 
     registry {
