@@ -12,12 +12,12 @@ dev:
 .PHONY: build
 build:
 	@echo " => Building $(IMAGE_NAME):$(IMAGE_TAG)"
-	@docker build -t $(IMAGE_NAME):$(IMAGE_TAG) .
+	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) .
 
 .PHONY: run
 run:
 	@echo " => Running $(IMAGE_NAME):$(IMAGE_TAG) on PORT $(PORT)"
-	@docker run -it --tty -e PORT=$(PORT) -p $(PORT):$(PORT) $(IMAGE_NAME):$(IMAGE_TAG)
+	docker run --rm -it --tty -e PORT=$(PORT) -p $(PORT):$(PORT) $(IMAGE_NAME):$(IMAGE_TAG)
 
 .PHONY: init
 init:

@@ -6,47 +6,54 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	//"github.com/mvrilo/go-redoc"
-	//ginredoc "github.com/mvrilo/go-redoc/gin"
+	// "github.com/mvrilo/go-redoc"
+	// ginredoc "github.com/mvrilo/go-redoc/gin"
 )
 
-//func BasicMiddleware() gin.HandlerFunc {
-//return func(c *gin.Context) {
-//fmt.Println(" ==> Middleware 🐰 🎩 🪄")
-//_, ok := c.GetQuery("user")
-//if !ok {
-//c.AbortWithStatus(http.StatusBadRequest)
-//return
-//}
-//c.Next()
-//}
-//}
+// func BasicMiddleware() gin.HandlerFunc {
+// 	return func(c *gin.Context) {
+// 		fmt.Println(" ==> Middleware 🐰 🎩 🪄")
+// 		theme, ok := c.GetQuery("theme")
+// 		if ok {
+// 			c.Set("theme", theme)
+// 		}
+// 		c.Next()
+// 	}
+// }
 
 func main() {
 	r := gin.Default()
-	//r.Use(BasicMiddleware())
+	// r.Use(BasicMiddleware())
 
-	//r.Use(ginredoc.New(redoc.Redoc{
-	//Title:       "Example API",
-	//Description: "Example API Description",
-	//SpecFile:    "./swagger.yaml",
-	//SpecPath:    "/swagger.yaml",
-	//DocsPath:    "/docs",
-	//}))
+	// r.Use(ginredoc.New(redoc.Redoc{
+	// 	Title:       "Example API",
+	// 	Description: "Example API Description",
+	// 	SpecFile:    "./swagger.yaml",
+	// 	SpecPath:    "/swagger.yaml",
+	// 	DocsPath:    "/docs",
+	// }))
 
 	r.GET("/", func(c *gin.Context) {
+		theme := "light dark"
+		_theme, ok := c.Get("theme")
+		if ok {
+			theme = _theme.(string)
+		}
+
 		c.Header("Content-Type", "text/html; charset=utf-8")
-		c.String(http.StatusOK, `<html>
+		htmlString := `<html>
         <head>
             <title>Hello from Go + Gin 🥃!</title>
-            <meta name="color-scheme" content="light dark">
+            <meta name="color-scheme" content="%s">
         </head>
         <body>
             <h3>Hello from Go + Gin 🥃!</h3>
             <p>Visit <a href="/ping">/ping</a></p>
+
         </body>
     </html>
-		`)
+		`
+		c.String(http.StatusOK, fmt.Sprintf(htmlString, theme))
 	})
 
 	r.GET("/ping", func(c *gin.Context) {
