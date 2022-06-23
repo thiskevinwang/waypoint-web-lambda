@@ -10,20 +10,18 @@ import (
 	// ginredoc "github.com/mvrilo/go-redoc/gin"
 )
 
-// func BasicMiddleware() gin.HandlerFunc {
-// 	return func(c *gin.Context) {
-// 		fmt.Println(" ==> Middleware 🐰 🎩 🪄")
-// 		theme, ok := c.GetQuery("theme")
-// 		if ok {
-// 			c.Set("theme", theme)
-// 		}
-// 		c.Next()
-// 	}
-// }
-
 func main() {
 	r := gin.Default()
-	// r.Use(BasicMiddleware())
+
+	// random middleware
+	// r.Use(func(c *gin.Context) {
+	// 	fmt.Println(" ==> Middleware 🐰 🎩 🪄")
+	// 	theme, ok := c.GetQuery("theme")
+	// 	if ok && (theme == "light" || theme == "dark") {
+	// 		c.Set("theme", theme)
+	// 	}
+	// 	c.Next()
+	// })
 
 	// r.Use(ginredoc.New(redoc.Redoc{
 	// 	Title:       "Example API",
