@@ -162,3 +162,13 @@ up-swift/vapor-app:
 	@$(MAKE) -C swift/vapor-app up
 get-url-swift/vapor-app:
 	@$(MAKE) -C swift/vapor-app get-url
+
+reset:
+	kubectl delete sts waypoint-server
+	kubectl delete pvc data-waypoint-server-0
+	kubectl delete svc waypoint
+	kubectl delete deploy waypoint-runner
+	waypoint server install \
+		-accept-tos -platform=kubernetes \
+		-k8s-server-image=ghcr.io/hashicorp/waypoint/alpha:02952e297 \
+		-k8s-odr-image=ghcr.io/hashicorp/waypoint/alpha-odr:02952e297
