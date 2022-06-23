@@ -16,11 +16,12 @@ COPY styles styles
 RUN npm run build
 
 FROM node:16.14-alpine
-COPY --from=COMPILER /usr/app/.next .next
+WORKDIR /usr/app
+COPY --from=COMPILER /usr/app/.next /usr/app/.next
 # `public` dir should live at the same level as `.next`
-COPY public /public
-COPY --from=COMPILER /usr/app/package*.json /
-COPY --from=COMPILER /usr/app/node_modules /node_modules
+COPY --from=COMPILER /usr/app/public /usr/app/public
+COPY --from=COMPILER /usr/app/package*.json /usr/app
+COPY --from=COMPILER /usr/app/node_modules /usr/app/node_modules
 
 # READINESS_CHECK_PORT and PORT are used by https://github.com/aws-samples/aws-lambda-adapter/blob/main/src/main.rs
 ENV READINESS_CHECK_PORT=7531
