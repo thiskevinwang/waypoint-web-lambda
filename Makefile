@@ -163,6 +163,17 @@ up-swift/vapor-app:
 get-url-swift/vapor-app:
 	@$(MAKE) -C swift/vapor-app get-url
 
+
+# SERVER_IMAGE=ghcr.io/hashicorp/waypoint/alpha:02952e297
+# ODR_IMAGE=ghcr.io/hashicorp/waypoint/alpha-odr:02952e297
+
+SERVER_IMAGE=hashicorp/waypoint
+ODR_IMAGE=hashicorp/waypoint-odr
+
+# SERVER_IMAGE=ghcr.io/thiskevinwang/waypoint:dev
+# ODR_IMAGE=ghcr.io/thiskevinwang/waypoint-odr:dev
+
+.PHONY: reset
 reset:
 	kubectl delete sts waypoint-server
 	kubectl delete pvc data-waypoint-server-0
@@ -170,5 +181,21 @@ reset:
 	kubectl delete deploy waypoint-runner
 	waypoint server install \
 		-accept-tos -platform=kubernetes \
-		-k8s-server-image=ghcr.io/hashicorp/waypoint/alpha:02952e297 \
-		-k8s-odr-image=ghcr.io/hashicorp/waypoint/alpha-odr:02952e297
+		-k8s-server-image=$(SERVER_IMAGE) \
+		-k8s-odr-image=$(ODR_IMAGE)
+
+
+.PHONY: upgrade
+upgrade:
+	waypoint server upgrade \
+		-auto-approve \
+		-k8s-server-image=$(SERVER_IMAGE) \
+		-k8s-odr-image=$(ODR_IMAGE)
+
+# For remote runners to auth w/ AWS
+.PHONY: runner-config
+runner-config:
+	waypoint config set -runner \
+		AWS_ACCESS_KEY_ID=FIXME \
+		AWS_SECRET_ACCESS_KEY=FIXME \
+		AWS_REGION=FIXME
