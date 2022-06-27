@@ -1,10 +1,10 @@
-project = "node"
+project = "express-tensorflow"
 
-app "express" {
+app "express-tensorflow" {
   build {
     use "docker" {
       buildkit   = true
-      platform = "arm64"
+      platform = "x86_64"
       dockerfile = "${path.app}/Dockerfile"
       disable_entrypoint = true
     }
@@ -43,7 +43,7 @@ variable "region" {
   description = "AWS Region"
 }
 variable "repository" {
-  default     = "nodejs-express"
+  default     = "express-tensorflow"
   type        = string
   description = "AWS ECR Repository Name"
 }
