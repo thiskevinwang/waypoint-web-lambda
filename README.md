@@ -36,7 +36,7 @@ to AWS Lambda.
 
 ## Deployed Examples
 
-(Subject to change...)
+> **Warning**: These URLs may change at any time.
 
 | Language | Framework  | Lambda URL                                                           |
 | :------- | :--------- | :------------------------------------------------------------------- |
