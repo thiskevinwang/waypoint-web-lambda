@@ -14,7 +14,7 @@ WORKDIR /usr/app
 # Don't copy package-lock.json because of platform errors
 COPY package.json ./
 COPY tsconfig*.json ./
-COPY app.ts ./
+COPY src ./src
 COPY index.ts ./
 RUN npm run build
 

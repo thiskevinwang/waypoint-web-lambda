@@ -19,3 +19,6 @@ data.db
 # ignore rust project build outputs
 target
 waypoint-restore.db
+
+# ignore terraform dot folder
+.terraform*

@@ -167,8 +167,11 @@ get-url-swift/vapor-app:
 # SERVER_IMAGE=ghcr.io/hashicorp/waypoint/alpha:02952e297
 # ODR_IMAGE=ghcr.io/hashicorp/waypoint/alpha-odr:02952e297
 
-SERVER_IMAGE=hashicorp/waypoint
-ODR_IMAGE=hashicorp/waypoint-odr
+SERVER_IMAGE=ghcr.io/hashicorp/waypoint/alpha:latest
+ODR_IMAGE=ghcr.io/hashicorp/waypoint/alpha-odr:latest
+
+# SERVER_IMAGE=hashicorp/waypoint:latest
+# ODR_IMAGE=hashicorp/waypoint-odr:latest
 
 # SERVER_IMAGE=ghcr.io/thiskevinwang/waypoint:dev
 # ODR_IMAGE=ghcr.io/thiskevinwang/waypoint-odr:dev
