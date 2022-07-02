@@ -12,7 +12,7 @@ app "express" {
     hook {
       when       = "before"
       // command    = ["sh", "hooks/prebuild.sh", var.gitrefname]
-      command = ["pwd && ls -al"]
+      command = ["echo", "$PATH"]
       // on_failure = "fail"
     }
 
