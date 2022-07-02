@@ -4,9 +4,9 @@ app "express" {
   build {
     use "docker" {
       buildkit           = true
-      platform           = "arm64"
+      platform           = "amd64"
       dockerfile         = "${path.app}/Dockerfile"
-      disable_entrypoint = true
+      disable_entrypoint = false
     }
 
     hook {
@@ -19,7 +19,7 @@ app "express" {
       use "aws-ecr" {
         region     = var.region
         repository = var.repository
-        tag        = var.tag
+        tag        = var.gitrefname
       }
     }
   }
