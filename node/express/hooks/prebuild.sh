@@ -9,11 +9,11 @@ echo "Branch: $1";
 db_name=${1//-/_};
 echo "db_name: $db_name";
 
-echo $BREAK
-echo "==> Running terraform apply"
-echo $BREAK
+# echo $BREAK
+# echo "==> Running terraform apply"
+# echo $BREAK
 # apply ./terraform/main.tf
-terraform -chdir=terraform apply -auto-approve >/dev/null
+# terraform -chdir=terraform apply -auto-approve >/dev/null
 
 echo $BREAK
 echo "==> Getting outputs from terraform"

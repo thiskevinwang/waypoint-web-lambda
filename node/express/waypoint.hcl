@@ -19,7 +19,7 @@ app "express" {
       use "aws-ecr" {
         region     = var.region
         repository = var.repository
-        tag        = var.gitrefname
+        tag        = var.tag
       }
     }
   }
@@ -82,6 +82,11 @@ variable "gitrefname" {
 //   type    = string
 // }
 
+variable "tfc_token" {
+  type        = string
+  description = "TFC Token"
+}
+
 ########################################################
 # Map terraform cloud outputs to waypoint variables
 ########################################################
@@ -91,6 +96,7 @@ variable "DB_HOST" {
     organization = "waypoint"
     workspace    = "node-express"
     output       = "aurora_postgresql_serverlessv2_cluster_endpoint"
+    token        = var.tfc_token
   })
 }
 
@@ -100,6 +106,7 @@ variable "DB_USER" {
     organization = "waypoint"
     workspace    = "node-express"
     output       = "aurora_postgresql_serverlessv2_cluster_master_username"
+    token        = var.tfc_token
   })
 }
 
@@ -109,6 +116,7 @@ variable "DB_PASSWORD" {
     organization = "waypoint"
     workspace    = "node-express"
     output       = "aurora_postgresql_serverlessv2_cluster_master_password"
+    token        = var.tfc_token
   })
 }
 variable "DB_PORT" {
@@ -117,6 +125,7 @@ variable "DB_PORT" {
     organization = "waypoint"
     workspace    = "node-express"
     output       = "aurora_postgresql_serverlessv2_cluster_endpoint_port"
+    token        = var.tfc_token
   })
 }
       
