@@ -82,11 +82,6 @@ variable "gitrefname" {
 //   type    = string
 // }
 
-variable "tfc_token" {
-  type        = string
-  description = "TFC Token"
-}
-
 ########################################################
 # Map terraform cloud outputs to waypoint variables
 ########################################################
