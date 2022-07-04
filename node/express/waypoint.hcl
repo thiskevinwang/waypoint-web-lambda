@@ -117,39 +117,39 @@ variable "gitrefname" {
 variable "DB_HOST" {
   type = string
   env = ["DB_HOST"]
-  // default = dynamic("terraform-cloud", {
-  //   organization = "waypoint"
-  //   workspace    = "node-express"
-  //   output       = "aurora_postgresql_serverlessv2_cluster_endpoint"
-  // })
+  default = dynamic("terraform-cloud", {
+    organization = "waypoint"
+    workspace    = "node-express"
+    output       = "aurora_postgresql_serverlessv2_cluster_endpoint"
+  })
 }
 
 variable "DB_USER" {
   type = string
   env = ["DB_USER"]
-  // default = dynamic("terraform-cloud", {
-  //   organization = "waypoint"
-  //   workspace    = "node-express"
-  //   output       = "aurora_postgresql_serverlessv2_cluster_master_username"
-  // })
+  default = dynamic("terraform-cloud", {
+    organization = "waypoint"
+    workspace    = "node-express"
+    output       = "aurora_postgresql_serverlessv2_cluster_master_username"
+  })
 }
 
 variable "DB_PASSWORD" {
   type = string
   env = ["DB_PASSWORD"]
-  // default = dynamic("terraform-cloud", {
-  //   organization = "waypoint"
-  //   workspace    = "node-express"
-  //   output       = "aurora_postgresql_serverlessv2_cluster_master_password"
-  // })
+  default = dynamic("terraform-cloud", {
+    organization = "waypoint"
+    workspace    = "node-express"
+    output       = "aurora_postgresql_serverlessv2_cluster_master_password"
+  })
 }
 variable "DB_PORT" {
   type = string
   env = ["DB_PORT"]
-  // default = dynamic("terraform-cloud", {
-  //   organization = "waypoint"
-  //   workspace    = "node-express"
-  //   output       = "aurora_postgresql_serverlessv2_cluster_endpoint_port"
-  // })
+  default = dynamic("terraform-cloud", {
+    organization = "waypoint"
+    workspace    = "node-express"
+    output       = "aurora_postgresql_serverlessv2_cluster_endpoint_port"
+  })
 }
       
