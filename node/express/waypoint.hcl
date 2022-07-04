@@ -2,25 +2,25 @@ project = "node"
 
 config {
   env = {
-    "DB_HOST" = configdynamic("terraform-cloud", {
+    "DB_HOST" = dynamic("terraform-cloud", {
       organization = "waypoint"
       workspace    = "node-express"
       output       = "aurora_postgresql_serverlessv2_cluster_endpoint"
     })
 
-    "DB_USER" = configdynamic("terraform-cloud", {
+    "DB_USER" = dynamic("terraform-cloud", {
       organization = "waypoint"
       workspace    = "node-express"
       output       = "aurora_postgresql_serverlessv2_cluster_username"
     })
 
-    "DB_PASSWORD" = configdynamic("terraform-cloud", {
+    "DB_PASSWORD" = dynamic("terraform-cloud", {
       organization = "waypoint"
       workspace    = "node-express"
       output       = "aurora_postgresql_serverlessv2_cluster_password"
     })
 
-    "DB_PORT" = configdynamic("terraform-cloud", {
+    "DB_PORT" = dynamic("terraform-cloud", {
       organization = "waypoint"
       workspace    = "node-express"
       output       = "aurora_postgresql_serverlessv2_cluster_port"
