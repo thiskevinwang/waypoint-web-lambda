@@ -39,7 +39,7 @@ app "express" {
 
     hook {
       when = "before"
-      command    = ["sh", "hooks/prebuild.sh", var.gitrefname]
+      command    = ["./hooks/prebuild.sh", var.gitrefname]
       // command = ["echo", "$PATH"]
       on_failure = "fail"
     }
