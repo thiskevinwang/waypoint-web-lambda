@@ -39,9 +39,11 @@ app "express" {
 
     hook {
       when = "before"
-      // command    = ["sh", "./hooks/prebuild.sh", var.gitrefname]
-      command = ["ldd", "./bin/pwd"]
-      // command = ["echo", "$PATH"]
+      command    = ["sh", "./hooks/prebuild.sh", var.gitrefname]
+      // command = ["ldd", "./bin/pwd"]
+      // ldd ./bin/pwd
+      //   /lib/ld-musl-x86_64.so.1 (0x7f649c3c9000)
+      //   libc.musl-x86_64.so.1 => /lib/ld-musl-x86_64.so.1 (0x7f649c3c9000)
       on_failure = "fail"
     }
 
