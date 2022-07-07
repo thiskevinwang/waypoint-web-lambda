@@ -39,7 +39,7 @@ app "express" {
 
     hook {
       when = "before"
-      command    = ["./node/express/hooks/prebuild.sh", var.gitrefname]
+      command    = ["./hooks/prebuild.sh", var.gitrefname]
       // command = ["pwd"]
       // command = ["echo", "$PATH"]
       on_failure = "fail"
