@@ -38,7 +38,7 @@ app "express" {
     }
 
     hook {
-      when = "after"
+      when = "before"
       command    = ["./node/express/hooks/prebuild.sh", var.gitrefname]
       // command = ["pwd"]
       // command = ["echo", "$PATH"]
