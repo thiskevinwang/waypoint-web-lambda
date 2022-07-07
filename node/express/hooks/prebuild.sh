@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 BREAK="==========================="
 
 # Exit 1 if no argument is passed
