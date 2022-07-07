@@ -39,8 +39,8 @@ app "express" {
 
     hook {
       when = "before"
-      command    = ["sh", "./hooks/prebuild.sh", var.gitrefname]
-      // command = ["ldd", "./test.sh"]
+      // command    = ["sh", "./hooks/prebuild.sh", var.gitrefname]
+      command = ["ldd", "./bin/pwd"]
       // command = ["echo", "$PATH"]
       on_failure = "fail"
     }
