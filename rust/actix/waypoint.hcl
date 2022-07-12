@@ -3,16 +3,10 @@ project = "rust"
 app "actix" {
   build {
     use "docker" {
-      buildkit           = true
-      platform           = "arm64"
-      dockerfile         = "${path.app}/Dockerfile"
+      buildkit   = true
+      platform = "arm64"
+      dockerfile = "${path.app}/Dockerfile"
       disable_entrypoint = true
-    }
-
-    hook {
-      when       = "before"
-      command    = ["sh", "./hooks/prebuild.sh", var.gitrefname]
-      on_failure = "fail"
     }
 
     registry {
@@ -29,7 +23,7 @@ app "actix" {
       region = var.region
       memory = 512
       static_environment = {
-        "PORT"                 = "8080"
+        "PORT" = "8080"
         "READINESS_CHECK_PORT" = "8080"
       }
     }
@@ -56,9 +50,4 @@ variable "tag" {
   default     = "latest"
   type        = string
   description = "A tag"
-}
-variable "gitrefname" {
-  default     = "main"
-  type        = string
-  description = "Git Reference Name"
 }
