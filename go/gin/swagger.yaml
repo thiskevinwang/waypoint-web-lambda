@@ -1,210 +1,92 @@
-openapi: 3.0.1
+openapi: 3.0.3
 info:
-  title: Pokemon REST API for PPKWU5
-  description: Try to test some GET enpoints
-  version: 3.0.0
+  title: Weights API
+  description: |
+    API for any client to post bluetooth scale data to.
+    The end-to-end usage is:
+    1. App + [Tindeq](https://tindeq.com/) bluetooth scale
+    2. POST to API
+    3. Do whatever with the data.
+
+  version: 0.1.0-rc.1
 servers:
-  - url: 'https://pokeapi.co'
+  - url: "http://localhost:8080"
 paths:
-  '/api/v2/machine/{id}':
+  "/weights":
+    post:
+      summary: Write a batch of weight entries
+      description: Write a batch of weight entries
+      requestBody:
+        description: TODO
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                batch_id:
+                  type: string
+                batch:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/BatchItem"
+
+      responses:
+        "200":
+          description: Success
+        "404":
+          description: Error
+
+  "/weights/:batch_id":
     get:
-      description: Enter id to find Pokemon Machine
-      summary: Finds Machine by Id
+      summary: List weight entries by batch_id
+      description: List weight entries by `batch_id`
       parameters:
         - name: id
           in: path
           description: ID of region to return
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Success
-        '404':
-          description: Error
-          content:
-            text/plain; charset=utf-8:
-              schema:
-                type: string
-              examples: {}
-      servers:
-        - url: 'https://pokeapi.co'
-    servers:
-      - url: 'https://pokeapi.co'
-  '/api/v2/pokemon/{id}':
-    get:
-      description: Enter id to find Pokemon
-      summary: Finds pokemon by Id
-      parameters:
-        - name: id
-          in: path
-          description: ID of region to return
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Success
-        '404':
-          description: Error
-          content:
-            text/plain; charset=utf-8:
-              schema:
-                type: string
-              examples: {}
-      servers:
-        - url: 'https://pokeapi.co'
-    servers:
-      - url: 'https://pokeapi.co'
-  '/api/v2/pokemon/{name}/':
-    get:
-      description: Enter name to find Pokemon Info
-      summary: Finds Pokemon by Name
-      parameters:
-        - name: name
-          in: path
-          description: The name that needs to pokemon info.
           required: true
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Success
-        '404':
-          description: Error
           content:
-            text/plain; charset=utf-8:
+            application/json:
               schema:
-                type: string
-              examples: {}
-      servers:
-        - url: 'https://pokeapi.co'
-    servers:
-      - url: 'https://pokeapi.co'
-  '/api/v2/ability/{id}/':
-    get:
-      description: Enter id to find Pokemon ability
-      summary: Finds Pokemon ability by Id
-      parameters:
-        - name: id
-          in: path
-          description: ID of region to return
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Success
-        '404':
+                type: object
+                properties:
+                  batch_id:
+                    type: string
+                  batch:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/BatchItem"
+        "404":
           description: Error
-          content:
-            text/plain; charset=utf-8:
-              schema:
-                type: string
-              examples: {}
-      servers:
-        - url: 'https://pokeapi.co'
-    servers:
-      - url: 'https://pokeapi.co'
-  '/api/v2/region/{id}':
-    get:
-      description: Enter id to find Pokemon region
-      summary: Finds Pokemon region by id
-      parameters:
-        - name: id
-          in: path
-          description: ID of region to return
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: Success
-        '404':
-          description: Error
-          content:
-            text/plain; charset=utf-8:
-              schema:
-                type: string
-              examples: {}
-      servers:
-        - url: 'https://pokeapi.co'
-    servers:
-      - url: 'https://pokeapi.co'
+
 components:
   schemas:
-    Pokemon:
+    BatchItem:
+      type: object
+      properties:
+        w:
+          type: number
+          format: float
+        t:
+          type: integer
+          format: int64
+    Entry:
       type: object
       properties:
         id:
+          type: string
+          format: uuid
+        batch_id:
+          type: string
+        timestamp_micro:
           type: integer
           format: int64
-        name:
-          type: integer
-          format: int64
-        base_experience:
-          type: integer
-          format: int32
-        height:
-          type: string
-        is_default:
-          type: string
-        order:
-          type: string
-        abilities:
-          type: string
-        moves:
-          type: string
-        stats:
-          type: string
-        types:
-          type: string
-        
-      xml:
-        name: Pokemon
-    Machine:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        item:
-          type: integer
-          format: int64
-        move:
-          type: integer
-          format: int32
-        version_group:
-          type: string
-        
-      xml:
-        name: Machine
-    Region:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        locations:
-          type: integer
-          format: int64
-        move:
-          type: integer
-          format: int32
-        name:
-          type: string
-        names:
-          type: string
-        main_generation:
-          type: string
-        pokedexes:
-          type: string
-        version_group:
-          type: string
-        
-      xml:
-        name: Region
+        weight_lb:
+          type: number
+          format: float

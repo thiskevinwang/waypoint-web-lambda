@@ -3,10 +3,10 @@ project = "go"
 app "gin" {
   build {
     use "docker" {
-      buildkit   = true
+      buildkit = true
       // platform   = "amd64"
-      platform = "arm64"
- 			dockerfile = "${path.app}/Dockerfile"
+      platform           = "arm64"
+      dockerfile         = "${path.app}/Dockerfile"
       disable_entrypoint = true
     }
 
@@ -23,6 +23,16 @@ app "gin" {
     use "aws-lambda" {
       region = var.region
       memory = 512
+      static_environment = {
+        "POSTGRES_HOST"     = var.DB_HOST
+        "POSTGRES_USER"     = var.DB_USER
+        "POSTGRES_PASSWORD" = var.DB_PASSWORD
+        "POSTGRES_PORT"     = var.DB_PORT
+        "POSTGRES_DB"       = "postgres"
+
+        "AUTH_TOKEN" = var.AUTH_TOKEN
+        "GIN_MODE"   = "release"
+      }
     }
   }
 
@@ -47,4 +57,24 @@ variable "tag" {
   default     = "latest"
   type        = string
   description = "A tag"
+}
+
+variable "DB_HOST" {
+  type = string
+}
+
+variable "DB_USER" {
+  type = string
+}
+
+variable "DB_PASSWORD" {
+  type = string
+}
+variable "DB_PORT" {
+  type = string
+}
+
+variable "AUTH_TOKEN" {
+  type = string
+  // default = "FIXME"
 }
