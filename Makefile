@@ -167,22 +167,48 @@ get-url-swift/vapor-app:
 # SERVER_IMAGE=ghcr.io/hashicorp/waypoint/alpha:02952e297
 # ODR_IMAGE=ghcr.io/hashicorp/waypoint/alpha-odr:02952e297
 
-SERVER_IMAGE=hashicorp/waypoint
-ODR_IMAGE=hashicorp/waypoint-odr
+SERVER_IMAGE=ghcr.io/hashicorp/waypoint/alpha:latest
+ODR_IMAGE=ghcr.io/hashicorp/waypoint/alpha-odr:latest
 
-# SERVER_IMAGE=ghcr.io/thiskevinwang/waypoint:dev
-# ODR_IMAGE=ghcr.io/thiskevinwang/waypoint-odr:dev
+# SERVER_IMAGE=hashicorp/waypoint:latest
+# ODR_IMAGE=hashicorp/waypoint-odr:latest
 
-.PHONY: reset
-reset:
+# SERVER_IMAGE=ghcr.io/thiskevinwang/waypoint:latest
+# ODR_IMAGE=ghcr.io/thiskevinwang/waypoint-odr:latest
+
+
+.PHONY: reset-k8s
+reset-k8s:
 	kubectl delete sts waypoint-server
 	kubectl delete pvc data-waypoint-server-0
 	kubectl delete svc waypoint
 	kubectl delete deploy waypoint-runner
+
+.PHONY: install-k8s
+install-k8s:
 	waypoint server install \
-		-accept-tos -platform=kubernetes \
+		-accept-tos \
+		-platform=kubernetes \
 		-k8s-server-image=$(SERVER_IMAGE) \
 		-k8s-odr-image=$(ODR_IMAGE)
+
+.PHONY: reset-docker
+reset-docker:
+	docker stop waypoint-server
+	docker rm waypoint-server
+	docker volume prune -f
+
+.PHONY: install-docker
+install-docker:
+	waypoint server install \
+		-accept-tos \
+		-platform=docker \
+		-docker-server-image=$(SERVER_IMAGE) \
+		-docker-odr-image=$(ODR_IMAGE)
+
+.PHONY: install-docker-runner
+install-docker-runner:
+	waypoint runner install
 
 
 .PHONY: upgrade

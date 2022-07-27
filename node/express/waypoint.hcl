@@ -1,14 +1,51 @@
 project = "node"
 
+config {
+  env = {
+    "WP_VAR_DB_HOST" = dynamic("terraform-cloud", {
+      organization = "waypoint"
+      workspace    = "node-express"
+      output       = "aurora_postgresql_serverlessv2_cluster_endpoint"
+    })
+
+    "WP_VAR_DB_USER" = dynamic("terraform-cloud", {
+      organization = "waypoint"
+      workspace    = "node-express"
+      output       = "aurora_postgresql_serverlessv2_cluster_username"
+    })
+
+    "WP_VAR_DB_PASSWORD" = dynamic("terraform-cloud", {
+      organization = "waypoint"
+      workspace    = "node-express"
+      output       = "aurora_postgresql_serverlessv2_cluster_password"
+    })
+
+    "WP_VAR_DB_PORT" = dynamic("terraform-cloud", {
+      organization = "waypoint"
+      workspace    = "node-express"
+      output       = "aurora_postgresql_serverlessv2_cluster_port"
+    })
+  }
+}
+
 app "express" {
   build {
     use "docker" {
-      buildkit   = true
-      platform = "arm64"
-      dockerfile = "${path.app}/Dockerfile"
-      disable_entrypoint = true
+      buildkit           = true
+      platform           = "amd64"
+      dockerfile         = "${path.app}/Dockerfile"
+      disable_entrypoint = false
     }
 
+    hook {
+      when = "before"
+      command    = ["sh", "./hooks/prebuild.sh", var.gitrefname]
+      // command = ["ldd", "./bin/pwd"]
+      // ldd ./bin/pwd
+      //   /lib/ld-musl-x86_64.so.1 (0x7f649c3c9000)
+      //   libc.musl-x86_64.so.1 => /lib/ld-musl-x86_64.so.1 (0x7f649c3c9000)
+      on_failure = "fail"
+    }
 
     registry {
       use "aws-ecr" {
@@ -24,8 +61,15 @@ app "express" {
       region = var.region
       memory = 512
       static_environment = {
-        "PORT" = "8080"
+        "PORT"                 = "8080"
         "READINESS_CHECK_PORT" = "8080"
+        "DB_HOST"              = var.DB_HOST
+        "DB_USER"              = var.DB_USER
+        "DB_PASSWORD"          = var.DB_PASSWORD
+        "DB_PORT"              = var.DB_PORT
+
+        # This needs to be dynamic
+        "DB_DATABASE" = var.gitrefname
       }
     }
   }
@@ -52,3 +96,63 @@ variable "tag" {
   type        = string
   description = "A tag"
 }
+########################
+# INPUT
+########################
+variable "gitrefname" {
+  default     = "main"
+  type        = string
+  description = "Git Ref Name"
+}
+
+// variable "tfc_organization" {
+//   default = "waypoint"
+//   type    = string
+// }
+// variable "tfc_workspace" {
+//   default = "node-express"
+//   type    = string
+// }
+
+########################################################
+# Map terraform cloud outputs to waypoint variables
+########################################################
+variable "DB_HOST" {
+  type = string
+  env = ["DB_HOST"]
+  default = dynamic("terraform-cloud", {
+    organization = "waypoint"
+    workspace    = "node-express"
+    output       = "aurora_postgresql_serverlessv2_cluster_endpoint"
+  })
+}
+
+variable "DB_USER" {
+  type = string
+  env = ["DB_USER"]
+  default = dynamic("terraform-cloud", {
+    organization = "waypoint"
+    workspace    = "node-express"
+    output       = "aurora_postgresql_serverlessv2_cluster_master_username"
+  })
+}
+
+variable "DB_PASSWORD" {
+  type = string
+  env = ["DB_PASSWORD"]
+  default = dynamic("terraform-cloud", {
+    organization = "waypoint"
+    workspace    = "node-express"
+    output       = "aurora_postgresql_serverlessv2_cluster_master_password"
+  })
+}
+variable "DB_PORT" {
+  type = string
+  env = ["DB_PORT"]
+  default = dynamic("terraform-cloud", {
+    organization = "waypoint"
+    workspace    = "node-express"
+    output       = "aurora_postgresql_serverlessv2_cluster_endpoint_port"
+  })
+}
+      
