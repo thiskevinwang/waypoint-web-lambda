@@ -79,22 +79,22 @@ variable "tag" {
   description = "A tag"
 }
 
-variable "DB_HOST" {
-  type = string
-}
+// variable "DB_HOST" {
+//   type = string
+// }
 
-variable "DB_USER" {
-  type = string
-}
+// variable "DB_USER" {
+//   type = string
+// }
 
-variable "DB_PASSWORD" {
-  type = string
-}
-variable "DB_PORT" {
-  type = string
-}
+// variable "DB_PASSWORD" {
+//   type = string
+// }
+// variable "DB_PORT" {
+//   type = string
+// }
 
-variable "AUTH_TOKEN" {
-  type = string
-  // default = "FIXME"
-}
+// variable "AUTH_TOKEN" {
+//   type = string
+//   // default = "FIXME"
+// }
