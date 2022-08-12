@@ -1,5 +1,24 @@
 project = "go"
 
+// config {
+//   env = {
+//     "FOOBAR" = dynamic("terraform-cloud", {
+//       organization = "waypoint"
+//       workspace    = "go-gin"
+//       output       = "foobar"
+//     })
+//   }
+// }
+
+variable "FOOBAR" {
+  type = string
+  default = dynamic("terraform-cloud", {
+    organization = "waypoint"
+    workspace    = "go-gin"
+    output       = "foobar"
+  })
+}
+
 app "gin" {
   build {
     use "docker" {
@@ -24,14 +43,15 @@ app "gin" {
       region = var.region
       memory = 512
       static_environment = {
-        "POSTGRES_HOST"     = var.DB_HOST
-        "POSTGRES_USER"     = var.DB_USER
-        "POSTGRES_PASSWORD" = var.DB_PASSWORD
-        "POSTGRES_PORT"     = var.DB_PORT
-        "POSTGRES_DB"       = "postgres"
+        FOOBAR = var.FOOBAR
+        // "POSTGRES_HOST"     = var.DB_HOST
+        // "POSTGRES_USER"     = var.DB_USER
+        // "POSTGRES_PASSWORD" = var.DB_PASSWORD
+        // "POSTGRES_PORT"     = var.DB_PORT
+        // "POSTGRES_DB"       = "postgres"
 
-        "AUTH_TOKEN" = var.AUTH_TOKEN
-        "GIN_MODE"   = "release"
+        // "AUTH_TOKEN" = var.AUTH_TOKEN
+        "GIN_MODE" = "release"
       }
     }
   }
