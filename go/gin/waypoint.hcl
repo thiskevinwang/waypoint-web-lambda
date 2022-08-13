@@ -11,12 +11,6 @@ project = "go"
 // }
 
 // how to raise the 1Gi ephemeral storage limit for a container
-task {
-    use "kubernetes" {
-      cpu    = "1000m"
-      memory = "4Gi"
-    }
-}
 
 variable "FOOBAR" {
   type = string
@@ -28,6 +22,13 @@ variable "FOOBAR" {
 }
 
 app "gin" {
+  task {
+    use "kubernetes" {
+      cpu    = "1000m"
+      memory = "4Gi"
+    }
+  }
+
   build {
     use "docker" {
       buildkit = true
