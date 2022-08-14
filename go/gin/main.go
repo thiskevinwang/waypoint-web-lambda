@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 
-	"main/db"
 	"main/middleware"
 	"main/routes"
 
@@ -15,7 +14,7 @@ func main() {
 	r := gin.Default()
 
 	// make `db` available on gin context
-	r.Use(db.Middleware)
+	// r.Use(db.Middleware)
 
 	// render docs at GET /
 	r.Use(middleware.Docs)
