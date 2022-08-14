@@ -25,9 +25,16 @@ init:
 	@$(WP_CMD) init
 
 .PHONY: up
+
+# Makefile needs extra `$` for cmd interpolation
 up:
 	@echo " => Deploying $(IMAGE_NAME)"
-	@$(WP_CMD) up
+	$(WP_CMD) up \
+		-local=true \
+  		-var DB_HOST=$$(terraform -chdir=terraform output db_host | jq -r) \
+        -var DB_USER=$$(terraform -chdir=terraform output db_user | jq -r) \
+        -var DB_PASSWORD=$$(terraform -chdir=terraform output db_password | jq -r) \
+        -var DB_PORT=$$(terraform -chdir=terraform output db_port | jq -r)
 
 .PHONY: get-url
 get-url:
