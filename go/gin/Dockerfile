@@ -27,6 +27,13 @@ FROM gcr.io/distroless/static
 COPY --from=builder /go/bin/app /
 COPY swagger.yaml ./
 
+# Default env vars
+ENV POSTGRES_PORT 5432
+ENV POSTGRES_DB postgres  
+ENV POSTGRES_HOST postgres
+ENV POSTGRES_USER postgres
+ENV POSTGRES_PASSWORD postgres
+
 # READINESS_CHECK_PORT and PORT are used by https://github.com/aws-samples/aws-lambda-adapter/blob/main/src/main.rs
 ENV READINESS_CHECK_PORT=7531
 ENV PORT=7531
