@@ -1,0 +1,36 @@
+version: "3"
+services:
+  postgres:
+    image: "postgres:14-alpine"
+    container_name: "${PROJECT_NAME}_postgres"
+    restart: always
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    ports:
+      - "${POSTGRES_PORT}:5432"
+  api:
+    container_name: "${PROJECT_NAME}_api"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:
+      - "./wait-for-it.sh"
+      - "postgres:5432"
+      - "--"
+      - "./rust-rocket"
+    # command: "ls -al"
+    environment:
+      - PORT
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_PORT
+      - POSTGRES_HOST
+    ports:
+      - "${PORT}:${PORT}"
+    depends_on:
+      - postgres
+    links:
+      - postgres
