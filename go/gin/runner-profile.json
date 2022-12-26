@@ -1,0 +1,11 @@
+{
+  "cpu": {
+    "request": "0",
+    "limit": "0"
+  },
+  "memory": {
+    "request": "0",
+    "limit": "0"
+  },
+  "service_account": "waypoint-runner"
+}
